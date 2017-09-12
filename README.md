@@ -20,7 +20,7 @@ Or install it yourself as:
 
 Include in your application.css file:
 
-    *= require english_tea/all
+    *= require english_tea
 
 Alternatively you can include individual modules by using the index to include an entire module:
 
