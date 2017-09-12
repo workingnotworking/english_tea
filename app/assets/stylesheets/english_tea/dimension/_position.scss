@@ -1,0 +1,80 @@
+// ==========================================================================
+// Position dimension classes
+// ==========================================================================
+
+@include _bp-prefixer(pos)
+{
+	@each $key, $val in (t: top, r: right, b: bottom, l: left)
+	{
+		// ---
+		// HALF OFFSETS
+		// ---
+
+		&-#{$key}half
+		{
+			#{$val}: _rem($base-rhythm-half) !important;
+		}
+
+		// ---
+		// NEGATIVE HALF OFFSETS
+		// ---
+
+		&-#{$key}-neghalf
+		{
+			#{$val}: _rem(-$base-rhythm-half) !important;
+		}
+
+		// ---
+		// GUTTERED OFFSETS
+		// ---
+
+		@each $gkey, $gval in $gutter-scale
+		{
+			&-#{$key}#{$gkey}
+			{
+				#{$val}: _rem($gval) !important;
+			}
+		}
+
+		// ---
+		// RESET OFFSETS
+		// ---
+
+		&-#{$key}auto
+		{
+			#{$val}: auto !important;
+		}
+
+		// ---
+		// PUSH OFFSETS
+		// ---
+
+		&-#{$key}push
+		{
+			#{$val}: 100% !important;
+		}
+	}
+
+	// ---
+	// CENTERING SHORTHANDS
+	// ---
+
+	&-xcenter
+	{
+		left: 50%;
+		@include transform(translate3d(-50%, 0, 0));
+	}
+
+	&-ycenter
+	{
+		top: 50%;
+		@include transform(translate3d(0, -50%, 0));
+	}
+
+	&-xycenter
+	{
+		left: 50%;
+		top: 50%;
+		@include transform(translate3d(-50%, -50%, 0));
+	}
+}

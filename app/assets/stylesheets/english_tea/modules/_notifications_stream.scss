@@ -1,0 +1,18 @@
+// ==========================================================================
+// Notifications Stream patterns & modules
+// ==========================================================================
+
+// ---
+// HERO & WINDOW SECTIONS
+// Page hero section and cover image "peek-thru" window
+// ---
+
+.notifications-stream-hero
+{
+  height: 50vmin;
+
+  @include _mq(map-get($breakpoints, bps))
+  {
+    height: 30vmin;
+  }
+}

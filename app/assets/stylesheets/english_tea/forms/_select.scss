@@ -1,0 +1,398 @@
+// ==========================================================================
+// Shorthand form select dropdown field styling classes
+// ==========================================================================
+
+.field-select
+{
+	@include prefixer(appearance, none, webkit moz);
+
+	background: map-get($colors, 1) url('data:image/svg+xml,#{$icon-caret}') no-repeat calc(100% - #{_rem($base-rhythm * 2)}) center;
+	background-size: _rem(map-get($icon-scale, large));
+	border-radius: 0;
+	color: map-get($colors, 10);
+	min-height: _rem($base-rhythm * 5); // Otherwise text gets clipped as line-height can be ignored
+	padding-right: _rem($base-rhythm * 5) !important;
+	position: relative;
+
+	&:focus
+	{
+		color: $color-text-base;
+	}
+}
+
+// Wrapper element for select2s that are within position fixed,
+// overlaid or scrollable container elements. Prevents scroll-jumping
+// that can occur when select2 dropdown is appended to body element.
+.field-select2-container
+{
+  position: relative;
+}
+
+// ---
+// SELECT2 POWERED DROPDOWN LISTS
+// These are custom versions of the built-in Select2 styles
+// ---
+
+.select2-container--wnw
+{
+	$_font: map-get($type-scale, 3);
+  $_font_bpm: map-get($type-scale, 2);
+
+	background-color: map-get($colors, 1);
+	border: $border-width $border-style $color-border-base;
+	color: $color-text-base;
+	display: block;
+	font-size: _rem(map-get($_font, size));
+	font-weight: normal;
+	line-height: _decimal-ceil(map-get($_font, line-height) / map-get($_font, size), 3);
+	@include prefixer(outline, none, webkit moz spec);
+	position: relative;
+	vertical-align: middle;
+
+  @include _mq(map-get($breakpoints, bpm))
+  {
+    font-size: _rem(map-get($_font_bpm, size));
+    line-height: _decimal-ceil(map-get($_font_bpm, line-height) / map-get($_font_bpm, size), 3);
+  }
+
+	.selection
+	{
+		@include prefixer(outline, none, webkit moz spec);
+	}
+
+  // ---
+  // SINGLE/MULTIPLE ITEM DROPDOWN LISTS
+  // ---
+
+	.select2-selection--single,
+	.select2-selection--multiple
+	{
+		cursor: pointer;
+		@include display(flex);
+		@include align-items(center);
+		@include justify-content(space-between !important);
+		padding: _rem($base-gutter);
+		@include prefixer(outline, none, webkit moz spec);
+		@include prefixer(user-select, none, webkit moz spec);
+
+		@include _mq(map-get($breakpoints, bpm))
+		{
+			padding-right: _rem($base-rhythm * 2);
+			padding-left: _rem($base-rhythm * 2);
+		}
+
+		.select2-selection__rendered,
+		.select2-selection__choice
+		{
+			@include display(flex);
+			@include align-items(center !important);
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		&.select2-selection--multiple .select2-selection__rendered
+		{
+			@include flex-wrap(wrap !important);
+		}
+
+			.select2-selection__placeholder
+			{
+				color: map-get($colors, 3);
+			}
+
+			.select2-selection__clear,
+			.select2-selection__choice__remove
+			{
+				$_icon-size: map-get($icon-scale, base);
+
+				background: transparent url('data:image/svg+xml,#{$icon-delete}') no-repeat center center;
+				background-size: _rem($_icon-size);
+				display: block;
+				@include flex-shrink(0 !important);
+				height:  _rem($_icon-size);
+				margin-right: $base-rhythm-half;
+				text-indent: -999em; // ¯\_(ツ)_/¯
+				width:  _rem($_icon-size);
+				@include transition(opacity $transition-timing-border $transition-easing-border);
+
+				&:active,
+				&:focus,
+				&:hover
+				{
+					opacity: map-get($opacity-scale, 4);
+				}
+			}
+
+		.select2-selection__choice
+		{
+			margin-right: _rem($base-gutter);
+		}
+
+		// ---
+		// INLINE SEARCH FOR MULTIPLE
+		// ---
+
+		.select2-search--inline
+		{
+			display: block;
+
+			.select2-search__field
+			{
+  			$_font: map-get($type-scale, 3);
+        $_font_bpm: map-get($type-scale, 2);
+
+  			border: none;
+  			box-sizing: border-box;
+				font-size: _rem(map-get($_font, size));
+				line-height: _decimal-ceil(map-get($_font, line-height) / map-get($_font, size), 3);
+
+        @include _mq(map-get($breakpoints, bpm))
+        {
+          font-size: _rem(map-get($_font_bpm, size));
+          line-height: _decimal-ceil(map-get($_font_bpm, line-height) / map-get($_font_bpm, size), 3);
+        }
+
+        @include _placeholder-prefix()
+        {
+          color: map-get($colors, 3);
+        }
+
+    		&::-webkit-search-cancel-button
+    		{
+    			@include prefixer(appearance, none, webkit moz);
+    		}
+			}
+
+      &:first-child
+      {
+        .select2-search__field
+        {
+          width: auto !important; // Not sure why select2 gives this a (tiny) inline fixed width?
+        }
+      }
+		}
+
+	  // ---
+	  // UP/DOWN ARROW
+	  // ---
+
+  	.select2-selection__arrow
+  	{
+  		@include display(flex);
+  		padding-left: _rem($base-gutter-large);
+
+	  	b
+	  	{
+		    border-color: $color-text-base transparent transparent transparent;
+		    border-style: solid;
+		    border-width: _rem($base-rhythm-half) _rem($base-rhythm-half) 0 _rem($base-rhythm-half);
+		    height: 0;
+		    width: 0;
+	    }
+  	}
+	}
+
+  // ---
+  // DROPDOWN
+  // ---
+
+	.select2-dropdown
+	{
+		$_font: map-get($type-scale, 1);
+
+		background-color: map-get($colors, 1);
+	  border: $border-width $border-style $color-border-base;
+	  border-bottom: none;
+	  @include _box-shadow(2);
+	  display: block;
+		font-size: _rem(map-get($_font, size));
+		line-height: _decimal-ceil(map-get($_font, line-height) / map-get($_font, size), 3);
+	  position: absolute;
+	  left: -999em;
+	  width: 100%;
+	  z-index: 2051; //map-get($layer-scale, 4);
+
+	  &.select2-dropdown--below
+	  {
+	  	border-top: none;
+	  }
+
+	  // ---
+	  // SEARCH WITHIN DROPDOWN
+	  // ---
+
+		.select2-search--dropdown
+		{
+  		display: block;
+  	}
+
+  		.select2-search--dropdown .select2-search__field
+  		{
+  			$_font: map-get($type-scale, 3);
+        $_font_bpm: map-get($type-scale, 1);
+
+  			border: none;
+  			border-bottom: $border-width $border-style $color-border-base;
+  			box-sizing: border-box;
+				font-size: _rem(map-get($_font, size));
+				line-height: _decimal-ceil(map-get($_font, line-height) / map-get($_font, size), 3);
+    		padding: _rem($base-gutter) _rem($base-rhythm * 2);
+    		width: 100%;
+
+        @include _mq(map-get($breakpoints, bpm))
+        {
+          font-size: _rem(map-get($_font_bpm, size));
+          line-height: #{map-get($_font_bpm, line-height) / map-get($_font_bpm, size)};
+        }
+
+    		&::-webkit-search-cancel-button
+    		{
+    			@include prefixer(appearance, none, webkit moz);
+    		}
+    	}
+
+  		.select2-search--dropdown.select2-search--hide
+  		{
+    		display: none;
+    	}
+
+	  // ---
+	  // DROPDOWN OPTIONS
+	  // ---
+
+	  .select2-results
+	  {
+	  	color: map-get($colors, 6);
+	  	display: block;
+	  }
+
+      .select2-results__group + .select2-results__options
+      {
+        margin-top: _rem($base-gutter);
+
+        .select2-results__option {
+          border-bottom: none;
+        }
+      }
+
+			.select2-results__options
+			{
+				max-height: _rem(275px);
+				overflow-y: scroll;
+			}
+
+				.select2-results__option
+				{
+					border-bottom: $border-width $border-style $color-border-base;
+					display: block;
+					padding: _rem($base-gutter) _rem($base-rhythm * 2);
+					@include prefixer(user-select, none, webkit moz spec);
+
+					// Make sure we use hand pointer cursor
+					&[aria-selected]
+					{
+	    			cursor: pointer;
+	    		}
+
+	    		// Selected item should be shaded darker
+	    		// And make sure we use default arrow cursor
+					&[aria-selected="true"]
+					{
+	    			background-color: map-get($colors, 2);
+	    			cursor: default;
+	    		}
+
+	    		// Disabled items get darkest color
+          &[aria-disabled]
+          {
+            color: map-get($colors, 3);
+          }
+
+          // Items not select get shaded on hover etc
+	    		&[aria-selected="false"].select2-results__option--highlighted:active,
+	    		&[aria-selected="false"].select2-results__option--highlighted:focus,
+	    		&[aria-selected="false"].select2-results__option--highlighted:hover
+	    		{
+	    			background-color: $color-fill-shade;
+	    		}
+	    	}
+
+	    	.select2-results__message
+	    	{
+	    		color: $color-text-base;
+	    		font-weight: $type-weight-medium;
+	    	}
+	}
+
+  // ---
+  // WHEN DROPDOWN IS OPEN
+  // ---
+
+	&.select2-container--open
+	{
+		// Upend arrow icon
+		.select2-selection__arrow b
+		{
+			border-color: transparent transparent $color-text-base transparent;
+			border-width: 0 _rem($base-rhythm-half) _rem($base-rhythm-half) _rem($base-rhythm-half);
+		}
+
+		// Move dropdown into view
+		.select2-dropdown
+		{
+			left: 0;
+		}
+	}
+
+  // ---
+  // WHEN CONTROL IS DISABLED
+  // ---
+
+	&.select2-container--disabled
+	{
+		color: map-get($colors, 5);
+		cursor: default;
+
+		.select2-selection__clear
+		{
+			display: none;
+		}
+	}
+}
+
+// ---
+// SELECT2 UTILITY CLASSES
+// ---
+
+.select2-close-mask
+{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  min-width: 100%;
+  height: auto;
+  width: auto;
+  opacity: 0;
+  z-index: 299;//map-get($layer-scale, 4);
+  background-color: $color-fill-base;
+  filter: alpha(opacity=0);
+}
+
+// Hides actual <select> element
+.select2-hidden-accessible
+{
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}

@@ -1,0 +1,67 @@
+// ==========================================================================
+// Shorthand styling classes for Google Autocomplete search dropdown
+// ==========================================================================
+
+.pac-container
+{
+	background-color: map-get($colors, 1);
+	border: 1px solid map-get($colors, 3);
+	border-top: none;
+	border-radius: 0;
+	box-shadow: none;
+	color: map-get($colors, 6);
+	font-family: $type-font-body;
+	padding: _rem($base-rhythm) _rem($base-gutter-large) _rem($base-rhythm) 0;
+
+	.pac-item
+	{
+		$_pac-type: map-get($type-scale, 3);
+
+		background: transparent url('data:image/svg+xml,#{$icon-location}') no-repeat _rem($base-gutter) center;
+		background-size: _rem(map-get($icon-scale, base));
+		border: none;
+		color: inherit;
+		font-size: _rem(map-get($_pac-type, size));
+		line-height: _rem(map-get($_pac-type, line-height));
+		padding: _rem($base-rhythm) 0 _rem($base-rhythm) _rem($base-gutter-large + $base-gutter);
+
+		@include transition(all $transition-timing-text $transition-easing-text);
+
+		&:active,
+		&:focus,
+		&:hover
+		{
+			background-color: transparent;
+			color: map-get($colors, 4);
+		}
+	}
+
+		// Hide Google's icon in favor of our own
+		// which is added on .pac-item instead
+		.pac-icon
+		{
+			display: none !important;
+		}
+
+		// Highlighted query matches
+		.pac-item-query
+		{
+			color: map-get($colors, 10);
+			display: inline-block;
+			font-size: inherit;
+			padding-right: _rem($base-rhythm-half);
+
+			&:active,
+			&:focus,
+			&:hover
+			{
+				color: map-get($colors, 6);
+			}
+
+			// Exact character matches within the highlighted query matches
+			.pac-matched
+			{
+				font-weight: $type-weight-medium;
+			}
+		}
+}

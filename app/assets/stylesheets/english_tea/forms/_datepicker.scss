@@ -1,0 +1,142 @@
+// ==========================================================================
+// Shorthand datepicker styling classes
+// ==========================================================================
+
+$datepicker-header-type: map-get($type-scale, 6);
+$datepicker-table-type: map-get($type-scale, 1);
+
+.pika-single
+{
+	background-color: map-get($colors, 1);
+	color: map-get($colors, 10);
+  display: block;
+  position: relative;
+	z-index: map-get($layer-scale, 5);
+
+	&.is-hidden 
+	{
+    display: none;
+	}
+
+	&.is-bound 
+	{
+    position: absolute;
+    @include _box-shadow(2);
+	}
+
+	.is-disabled
+	{
+		> input[type="button"],
+		> input[type="submit"],
+		> button[type="button"]
+		{
+			cursor: default;
+		}	
+	}
+}
+
+	.pika-title
+	{
+		background-color: map-get($colors, 9);
+		color: map-get($colors, 1);
+		padding: _rem($base-rhythm);
+		position: relative;
+		text-align: center;
+	}
+		
+		.pika-label
+		{
+			display: inline-block;
+			font-family: $type-font-title;
+			font-size: #{_rem(map-get($datepicker-header-type, size))};
+			font-weight: $type-weight-normal;
+			letter-spacing: $type-kerning-title;
+			line-height: #{_rem(map-get($datepicker-header-type, line-height))};
+			text-transform: uppercase;
+
+			&:nth-child(2)
+			{
+				color: map-get($colors, 6);
+				margin-left: 2px;
+			}
+		}
+
+		.pika-select
+		{
+			display: none;
+		}
+
+		.pika-prev,
+		.pika-next
+		{
+			background: transparent url('data:image/svg+xml,#{$icon-prev-rev}') no-repeat center center;
+			display: block;
+			height: _rem(map-get($icon-scale, base));
+			left: _rem($base-rhythm);
+			position: absolute;
+			text-indent: -999em;
+			top: 50%;
+			@include transform(translate3d(0, -50%, 0));
+			width: _rem(map-get($icon-scale, base));
+		}
+
+		.pika-next
+		{
+			background-image: url('data:image/svg+xml,#{$icon-next-rev}');
+			left: auto;
+			right: _rem($base-rhythm);
+		}
+
+	.pika-table 
+	{
+		border: $border-width $border-style $color-border-base;
+		width: 100%;
+
+		td, th 
+		{
+			font-size: #{_rem(map-get($datepicker-table-type, size))};
+			line-height: #{_rem(map-get($datepicker-table-type, line-height))};
+			padding: _rem($base-rhythm);
+			text-align: center;
+		}
+
+		abbr 
+		{
+			border: none;
+			display: inline-block;
+			font-weight: $type-weight-medium;
+			margin: _rem($base-rhythm-half) 0;
+		}
+
+		.is-outside-current-month
+		{
+			color: map-get($colors, 3);
+		}
+
+		.is-today 
+		{
+			position: relative;
+			z-index: 0;
+
+			&:after 
+			{
+				background-color: map-get($colors, 2);
+				border-radius: 100%;
+				content: '';
+				display: block;
+				height: 75%;
+				left: 50%;
+				position: absolute;
+				top: 50%;
+				@include transform(translate3d(-50%, -50%, 0));
+				width: 75%;
+				z-index: 1;
+			}
+
+			.pika-day 
+			{
+				position: relative;
+				z-index: 2;
+			}
+		}
+	}

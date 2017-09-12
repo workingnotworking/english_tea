@@ -1,0 +1,40 @@
+// ==========================================================================
+// Typographic hierarchy & rhythm classes
+// ==========================================================================
+
+// Font sizes and proportional line heights as defined in `$type-scale`
+@include _bp-prefixer(t)
+{
+	@each $key, $val in $type-scale
+	{
+		&#{$key}
+		{
+			font-size: _rem(map-get($val, size)) !important;
+			line-height: _decimal-ceil(map-get($val, line-height) / map-get($val, size), 3) !important;
+		}
+	}
+}
+
+// Line heights in fixed 10px REM increments
+@include _bp-prefixer(lh)
+{
+	@each $key, $val in $gutter-scale
+	{
+		&#{$key}
+		{
+			line-height: _rem($val) !important;
+		}
+	}
+}
+
+// Line heights in fixed REM increments as defined in `$type-scale`
+@include _bp-prefixer(tlh)
+{
+	@each $key, $val in $type-scale
+	{
+		&#{$key}
+		{
+			line-height: _rem(map-get($val, line-height)) !important;
+		}
+	}
+}

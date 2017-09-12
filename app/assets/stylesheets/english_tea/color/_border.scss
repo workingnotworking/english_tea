@@ -1,0 +1,32 @@
+// ==========================================================================
+// Border color declaration classes
+// Pulled from $colors
+// ==========================================================================
+
+@each $key, $val in $colors
+{
+	.c-b#{$key}
+	{
+		border-color: $val !important;
+	}
+
+	@each $_key, $_val in (top: t, right: r, bottom: b, left: l)
+	{
+		.c-b#{$_val}#{$key}
+		{
+			border-#{$_key}-color: $val !important;
+		}
+	}
+}
+
+// ---
+// Border color utility classes
+// ---
+
+@each $_key, $_val in (top: t, right: r, bottom: b, left: l)
+{
+	.c-b#{$_val}-trans
+	{
+		border-#{$_key}-color: transparent !important;
+	}
+}

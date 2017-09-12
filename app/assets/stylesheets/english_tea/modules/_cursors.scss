@@ -1,0 +1,51 @@
+// ==========================================================================
+// Cursor styling classes
+// ==========================================================================
+
+.default
+{
+  cursor: default;
+}
+
+.pointer
+{
+  cursor: pointer;
+}
+
+.wait
+{
+  cursor: wait;
+}
+
+.help
+{
+  cursor: help;
+}
+
+.move
+{
+  cursor: move;
+}
+
+@include _bp-prefixer-basic
+{
+  &default
+  {
+    cursor: default;
+  }
+
+  &pointer
+  {
+    cursor: pointer;
+  }
+
+  &wait
+  {
+    cursor: wait;
+  }
+
+  &help
+  {
+    cursor: help;
+  }
+}

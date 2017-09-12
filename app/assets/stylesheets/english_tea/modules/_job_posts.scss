@@ -1,0 +1,303 @@
+// ==========================================================================
+// Job Post (UJB) patterns & modules
+// ==========================================================================
+
+// ---
+// INLINE JOB POST
+// Styling of contracted and expanded job posts
+// on job posts index page
+// ---
+
+.job-post-inline
+{
+	.job-post-headline
+	{
+		@include transition(all $transition-timing-button $transition-easing-button);
+
+		// Only transition the BG if signed in as nested anchors
+		// will be controlling text transitions
+		&.job-post-signed-in
+		{
+			@include transition(background-color $transition-timing-button $transition-easing-button);
+		}
+
+		&.shown,
+		&:active,
+		&:focus,
+		&:hover
+		{
+			color: rgba(map-get($colors, 1), 0.75) !important;
+
+			mark
+			{
+				color: map-get($colors, 1) !important;
+				font-weight: $type-weight-normal !important;
+			}
+
+			.job-post-favorite
+			{
+				border-color: transparent !important;
+				color: inherit !important;
+			}
+		}
+
+		&.shown:after
+		{
+			@include _box-shadow(3);
+			bottom: 0;
+			content: '';
+			display: block;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+			z-index: 0;
+		}
+
+		@each $key, $val in $colors-job-types
+		{
+			&.job-post-type-#{$key}
+			{
+				&.shown,
+				&:active,
+				&:focus,
+				&:hover
+				{
+					background-color: map-get($val, 2) !important;
+					color: map-get($val, 1) !important;
+				}
+
+				mark
+				{
+					color: map-get($val, 2);
+          font-weight: $type-weight-normal !important;
+				}
+
+				.job-post-favorite
+				{
+					&:active,
+					&:focus,
+					&:hover
+					{
+						background-color: map-get($val, 3) !important;
+					}
+				}
+			}
+		}
+
+		// Counter the global link hover style as we don't need it here
+		&:hover,
+		a:hover
+		{
+			opacity: 1;
+		}
+	}
+}
+
+// ---
+// JOB POST
+// Basic standalone job post styling
+// ---
+
+.job-post
+{
+	@include _box-shadow(6);
+
+	.job-post-headline
+	{
+		color: #4a78ff !important; // see above color notes
+
+		mark
+		{
+			color: map-get($colors, 1) !important;
+			font-weight: $type-weight-normal !important;
+		}
+
+    &.job-post-type-freelance
+    {
+      color: #ffccc7 !important; // see above color notes
+    }
+	}
+
+}
+
+// ---
+// JOB POST HEADLINES
+// Carousel styling for madlib-style carousel
+// ---
+
+.job-post-templates
+{
+	// Main carousel item container base styling
+	.snapper_pane_crop
+	{
+		position: relative;
+		z-index: map-get($layer-scale, 2);
+	}
+
+		// Headline highlighted words base coloring and behavior
+		.marked
+		{
+			border-bottom: 1px solid map-get($colors, 2);
+			color: map-get($colors, 3);
+			font-weight: $type-weight-normal;
+
+			@include transition(all $transition-timing-text $transition-easing-text);
+
+			&:empty:before
+			{
+				content: attr(data-job-post-default);
+			}
+
+			&:empty:focus
+			{
+				color: transparent;
+				cursor: text;
+
+				@include transition(border-color $transition-timing-text $transition-easing-text);
+			}
+
+			&:not(:empty):active,
+			&:not(:empty):focus,
+			&:hover,
+			{
+				border-color: map-get(map-get($colors-job-types, fulltime), 2);
+				color: map-get(map-get($colors-job-types, fulltime), 2);
+			}
+		}
+
+	.snapper_nextprev
+	{
+		display: none;
+
+		@include _mq(map-get($breakpoints, bps))
+		{
+			display: block;
+		}
+	}
+
+	// Base prev/next styling
+	.snapper_nextprev_prev,
+	.snapper_nextprev_next
+	{
+		background: transparent url('data:image/svg+xml,#{$icon-prev}') no-repeat center center;
+		background-size: 125%;
+		display: block;
+		height: _rem($base-rhythm * 3);
+		text-indent: -999em;
+		width: _rem($base-rhythm * 3);
+	}
+
+	.snapper_nextprev_next
+	{
+		background-image: url('data:image/svg+xml,#{$icon-next}');
+	}
+
+	// Within prev/next wrapper container: for non-form pages
+	.snapper_nextprev_contain
+	{
+		> .snapper_nextprev
+		{
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			z-index: 0;
+
+			@include _mq(map-get($breakpoints, bpl))
+			{
+				bottom: auto;
+				top: 50%;
+				@include transform(translate3d(0, -50%, 0));
+			}
+		}
+
+			.snapper_nextprev_prev,
+			.snapper_nextprev_next
+			{
+				bottom: _rem(-($base-rhythm * 5) - $base-rhythm-half);
+				height: _rem($base-rhythm * 4);
+				left: 0;
+				position: absolute;
+				width: _rem($base-rhythm * 4);
+
+				@include _mq(map-get($breakpoints, bpl))
+				{
+					bottom: auto;
+					left: _rem(-($base-rhythm * 8));
+					top: 50%;
+					@include transform(translate3d(0, -50%, 0));
+				}
+			}
+
+			.snapper_nextprev_next
+			{
+				left: auto;
+				right: 0;
+
+				@include _mq(map-get($breakpoints, bpl))
+				{
+					right: _rem(-($base-rhythm * 8));
+				}
+			}
+	}
+
+	// Dots navigation to move between items
+	.snapper_nav
+	{
+		label
+		{
+			height: _rem(7px);
+			width: _rem(7px);
+		}
+
+		> a:not(.snapper_nav_item-selected)
+		{
+			opacity: 0.125;
+		}
+	}
+
+	// Adjust styling for compact on form pages
+	&.job-post-templates-compact
+	{
+		.snapper
+		{
+			// overflow: hidden;
+
+			&:before,
+			&:after
+			{
+				content: none;
+				display: none;
+			}
+		}
+
+		.snapper_nextprev_item
+		{
+			display: inline-block;
+		}
+	}
+
+	// Adjust styling for fullsize on non-form pages
+	&.job-post-templates-fullsize
+	{
+		.snapper_pane_crop
+		{
+			@include _box-shadow(3);
+		}
+
+		.snapper_nav
+		{
+			label
+			{
+				height: _rem($base-rhythm);
+				width: _rem($base-rhythm);
+			}
+		}
+	}
+}
+// +/- 30px from vendor css still showing scrollbar in safari
+.enhanced .job-post-templates .snapper_pane_crop .snapper_pane {
+	padding-bottom: 40px;
+	margin-bottom: -40px;
+}

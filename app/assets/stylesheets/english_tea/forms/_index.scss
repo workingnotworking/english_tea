@@ -1,0 +1,246 @@
+// ==========================================================================
+// Shorthand basic field styling classes
+// ==========================================================================
+
+.field
+{
+	@include display(flex);
+	@include flex-wrap(wrap);
+	@include justify-content(space-between);
+	@include align-items(flex-end);
+	min-width: 0; // fixes flexbox+select2 issues: https://css-tricks.com/flexbox-truncated-text/
+
+	.field-header
+	{
+		@include flex(1 0 auto);
+		margin-bottom: _rem($base-rhythm);
+		max-width: 100%; // Don't let this flex child overflow its parent
+		padding-right: _rem($base-gutter);
+	}
+
+		.field-label
+		{
+			$_font: map-get($type-scale, 2);
+
+			@include align-items(center);
+			@include display(flex);
+			@include flex(1 0 auto);
+			font-size: _rem(map-get($_font, size));
+			font-weight: $type-weight-medium;
+			line-height: _decimal-ceil(map-get($_font, line-height) / map-get($_font, size), 3);
+
+			> small
+			{
+				// TODO: Put this back when we have client side validation
+				//$_font-small: map-get($type-scale, 1);
+				//font-size: _rem(map-get($_font-small, size));
+
+				margin-left: _rem($base-rhythm-half);
+			}
+		}
+
+		.field-tooltip
+		{
+			@include align-items(center);
+			@include display(inline-flex);
+		}
+
+		.field-description
+		{
+			color: map-get($colors, 4);
+		}
+
+	.field-feedback
+	{
+		display: none;
+		margin-bottom: _rem($base-rhythm);
+	}
+
+	.field-control,
+	.field-custom-control,
+	.awesomplete,
+	.select2-container--wnw
+	{
+		@include flex-basis(100%);
+	}
+
+	// ---
+	// FIELD ELEMENT SUBCLASSING
+	// ---
+
+	&.field-horizontal
+	{
+		@include display(flex);
+		@include justify-content(space-between);
+		@include align-items(center);
+
+		.field-header
+		{
+			@include flex-basis(auto);
+			margin-bottom: 0;
+			padding-right: 0;
+		}
+
+		.field-feedback
+		{
+			margin-bottom: 0;
+			padding-right: _rem($base-gutter);
+		}
+
+		.field-control,
+		.field-custom-control,
+		.awesomplete,
+		.select2-container--wnw
+		{
+			@include flex-basis(auto);
+		}
+
+		.field-choices
+		{
+			@include display(flex);
+			@include flex-grow(1);
+		}
+	}
+
+	&.error,
+	&.success,
+	&.warning
+	{
+		> .field-feedback
+		{
+			display: block;
+		}
+	}
+
+	&.error
+	{
+		> .field-control,
+		> .field-custom-control > .field-control
+		{
+			border-color: $color-validation-error;
+		}
+
+		> .field-feedback
+		{
+			.field-errors
+			{
+				display: block;
+				color: $color-validation-error;
+			}
+
+			.field-success,
+			.field-warning
+			{
+				display: none;
+			}
+		}
+	}
+
+	&.success
+	{
+		> .field-control,
+		> .field-custom-control > .field-control
+		{
+			border-color: $color-validation-success;
+		}
+
+		> .field-feedback
+		{
+			.field-success
+			{
+				display: block;
+				color: $color-validation-success;
+			}
+
+			.field-errors,
+			.field-warning
+			{
+				display: none;
+			}
+		}
+	}
+
+	&.warning
+	{
+		> .field-control,
+		> .field-custom-control > .field-control
+		{
+			border-color: orange;
+		}
+
+		> .field-feedback
+		{
+			.field-warning
+			{
+				display: block;
+				color: orange;
+			}
+
+			.field-success,
+			.field-errors
+			{
+				display: none;
+			}
+		}
+	}
+}
+
+.field-control
+{
+	@include prefixer(appearance, none, webkit moz);
+
+	$_font: map-get($type-scale, 3);
+	$_font_bpm: map-get($type-scale, 2);
+
+	background-color: map-get($colors, 1);
+	border: 1px solid map-get($colors, 2);
+	border-radius: 0;
+	color: $color-text-base;
+	font-size: _rem(map-get($_font, size));
+	font-weight: normal;
+	line-height: _decimal-ceil(map-get($_font, line-height) / map-get($_font, size), 3);
+	min-width: 0; // fixes flexbox overflow issue
+	padding: _rem($base-gutter);
+	@include transition(border-color $transition-timing-border $transition-easing-border);
+
+	@include _mq(map-get($breakpoints, bpm))
+	{
+		padding-right: _rem($base-rhythm * 2);
+		padding-left: _rem($base-rhythm * 2);
+		font-size: _rem(map-get($_font_bpm, size));
+		line-height: _decimal-ceil(map-get($_font_bpm, line-height) / map-get($_font_bpm, size), 3);
+	}
+
+	@include _placeholder-prefix()
+	{
+		color: map-get($colors, 3);
+	}
+
+	&:focus
+	{
+		border-color: map-get($colors, 3) !important;
+	}
+
+	// Add an icon to the start of the field and adjust dropdown
+	// content padding and (optional) heading to reflect this
+	[data-has-icon] &
+	{
+		&[data-icon]
+		{
+			background-repeat: no-repeat;
+			background-position: _rem($base-gutter) center;
+			background-size: _rem(map-get($icon-scale, base));
+			padding-left: _rem($base-gutter-large + $base-gutter) !important;
+
+			&[data-icon="search"]
+			{
+				background-image: url('data:image/svg+xml,#{$icon-search-light}');
+			}
+
+			&[data-icon="location"]
+			{
+				background-image: url('data:image/svg+xml,#{$icon-location-light}');
+			}
+		}
+	}
+}

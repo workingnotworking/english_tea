@@ -1,0 +1,126 @@
+// ==========================================================================
+// Typographic styling classes
+// ==========================================================================
+
+// ---
+// WEIGHTS
+// ---
+
+.light
+{
+	font-weight: $type-weight-light !important;
+}
+
+.normal
+{
+	font-weight: $type-weight-normal !important;
+}
+
+.medium
+{
+	font-weight: $type-weight-medium !important;
+}
+
+.bold
+{
+	font-weight: $type-weight-bold !important;
+}
+
+// ---
+// STYLES
+// ---
+
+.italic
+{
+	font-style: italic !important;
+}
+
+.roman
+{
+	font-style: normal !important;
+}
+
+.underline
+{
+	text-decoration: underline !important;
+}
+
+.no-underline
+{
+	text-decoration: none !important;
+}
+
+.caps
+{
+	text-transform: uppercase !important;
+}
+
+.title
+{
+	text-transform: capitalize !important;
+}
+
+.strike
+{
+	text-decoration: line-through !important;
+}
+
+// ---
+// KERNING
+// ---
+
+@each $key, $val in $kerning-scale
+{
+	.kern#{$key}
+	{
+		letter-spacing: $val !important;
+	}
+}
+
+// ---
+// EFFECTS
+// ---
+
+.wrap
+{
+	white-space: normal !important;
+}
+
+.nowrap
+{
+	white-space: nowrap !important;
+}
+
+.break
+{
+	word-wrap: break-word !important;
+}
+
+.truncate
+{
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// ---
+// TYPOGRAPHIC ELEMENTS
+// ---
+
+// <ul>
+.list
+{
+	list-style: disc outside !important;
+
+	> li
+	{
+		margin-left: _rem(($base-rhythm * 2) + $base-rhythm-half);
+		padding-left: _rem($base-rhythm-half);
+	}
+}
+
+.nums
+{
+	list-style: decimal inside !important;
+}

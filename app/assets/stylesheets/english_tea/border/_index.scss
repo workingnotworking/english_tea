@@ -1,0 +1,77 @@
+// ==========================================================================
+// Border widths & style declaration classes
+// ==========================================================================
+
+// ---
+// RADIUS
+// ---
+
+.b-rad-rnd
+{
+	border-radius: $border-radius-rounded;
+}
+
+.b-rad-pill
+{
+	border-radius: $border-radius-pill;
+}
+
+.b-rad-circ
+{
+	border-radius: $border-radius-circle;
+}
+
+.b-rad-none
+{
+	border-radius: $border-radius-base;
+}
+
+// ---
+// 1PX SIDED + ALL BORDERS
+// ---
+
+@include _bp-prefixer(b)
+{
+	&
+	{
+		border: $border-width $border-style $color-border-base !important;
+	}
+
+	&0
+	{
+		border: none !important;
+	}
+
+	@each $key, $val in (t: top, r: right, b: bottom, l: left)
+	{
+		// ---
+		// PER-SIDE BORDERS
+		// ---
+
+		&#{$key}
+		{
+			border-#{$val}: $border-width $border-style $color-border-base !important;
+		}
+
+		// ---
+		// REMOVE PER-SIDE BORDERS
+		// ---
+
+		&#{$key}0
+		{
+			border-#{$val}: none !important;
+		}
+	}
+}
+
+// ---
+// BORDERS WIDTHS
+// ---
+
+@for $i from 0 through 10
+{
+	.bw#{$i}
+	{
+		border-width: #{$i}px !important;
+	}
+}

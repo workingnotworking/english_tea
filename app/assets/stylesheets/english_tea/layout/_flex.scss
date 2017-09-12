@@ -1,0 +1,266 @@
+// ==========================================================================
+// Flexbox layout for elements
+// ==========================================================================
+
+.flex
+{
+	@include display(flex !important);
+	@include flex-wrap(wrap !important);
+}
+
+.flex-inline
+{
+  @include display(inline-flex !important);
+}
+
+.flex-column
+{
+  @include flex-direction(column !important);
+}
+
+@include _bp-prefixer(flex)
+{
+  // ---
+  // WRAPPING
+  // ---
+
+  &-wrap
+  {
+    @include flex-wrap(wrap !important);
+  }
+
+  &-nowrap
+  {
+    @include flex-wrap(nowrap !important);
+  }
+
+  // ---
+  // ALIGN ITEMS
+  // ---
+
+  &-top
+  {
+    @include align-items(flex-start !important);
+  }
+
+  &-middle
+  {
+    @include align-items(center !important);
+  }
+
+  &-bottom
+  {
+    @include align-items(flex-end !important);
+  }
+
+  &-stretch
+  {
+    @include align-items(stretch !important);
+  }
+
+  &-baseline
+  {
+    @include align-items(baseline !important);
+  }
+
+  // ---
+  // ALIGN CONTENT
+  // ---
+
+  &-content-top
+  {
+    @include align-content(flex-start !important);
+  }
+
+  &-content-middle
+  {
+    @include align-content(center !important);
+  }
+
+  &-content-bottom
+  {
+    @include align-content(flex-end !important);
+  }
+
+  &-content-stretch
+  {
+    @include align-content(stretch !important);
+  }
+
+  &-content-between
+  {
+    @include align-content(space-between !important);
+  }
+
+  &-content-around
+  {
+    @include align-content(space-around !important);
+  }
+
+  // ---
+  // JUSTIFY CONTENT
+  // ---
+
+  &-left
+  {
+  	@include justify-content(flex-start !important);
+  }
+
+  &-center
+  {
+  	@include justify-content(center !important);
+  }
+
+  &-right
+  {
+  	@include justify-content(flex-end !important);
+  }
+
+  &-between
+  {
+  	@include justify-content(space-between !important);
+  }
+
+  &-around
+  {
+  	@include justify-content(space-around !important);
+  }
+}
+
+  // ---
+  // FLEX CHILDREN SHRINK/GROW
+  // ---
+
+	.shrink
+	{
+		@include flex-shrink(1 !important);
+	}
+
+	.noshrink
+	{
+		@include flex-shrink(0 !important);
+	}
+
+	.grow
+	{
+		@include flex-grow(1 !important);
+	}
+
+	.nogrow
+	{
+		@include flex-grow(0 !important);
+	}
+
+  // ---
+  // FLEX CHILDREN SELF
+  // ---
+
+  .self-stretch
+  {
+    @include align-self(stretch !important);
+  }
+
+  .self-top
+  {
+    @include align-self(flex-start !important);
+  }
+
+  .self-middle
+  {
+    @include align-self(center !important);
+  }
+
+  .self-bottom
+  {
+    @include align-self(flex-end !important);
+  }
+
+  .self-baseline
+  {
+    @include align-self(baseline !important);
+  }
+
+  // ---
+  // FLEX CHILDREN ORDER
+  // ---
+
+  @include _bp-prefixer(order)
+  {
+    &-first
+    {
+       @include order(-1);
+    }
+
+    &-last
+    {
+       @include order(999);
+    }
+
+    &-reset
+    {
+      @include order(initial);
+    }
+
+    @for $i from 1 through 6
+    {
+      &#{$i}
+      {
+        @include order($i);
+      }
+    }
+  }
+
+  // ---
+  // FLEX CHILDREN SIZING
+  // ---
+
+  @include _bp-prefixer(up)
+  {
+    @for $i from 1 through 10
+    {
+      &#{$i}
+      {
+        @include flex-basis(percentage(1 / $i) !important);
+        max-width: percentage(1 / $i); // IE11 padding fix
+				&.grow {
+					max-width: none;
+				}
+      }
+    }
+
+    &2-3
+    {
+      @include flex-basis(percentage(2 / 3) !important);
+      max-width: percentage(2 / 3); // IE11 padding fix
+			&.grow {
+				max-width: none;
+			}
+    }
+
+    &3-4
+    {
+      @include flex-basis(percentage(3 / 4) !important);
+      max-width: percentage(3 / 4); // IE11 padding fix
+			&.grow {
+				max-width: none;
+			}
+    }
+
+    &4-5
+    {
+      @include flex-basis(percentage(4 / 5) !important);
+      max-width: percentage(4 / 5); // IE11 padding fix
+			&.grow {
+				max-width: none;
+			}
+    }
+
+    &auto
+    {
+      @include flex-basis(auto !important);
+      max-width: none; // IE11 padding fix
+			&.grow {
+				max-width: none;
+			}
+    }
+  }

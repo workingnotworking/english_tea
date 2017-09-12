@@ -1,0 +1,515 @@
+// ==========================================================================
+// Global variable configuration
+// ==========================================================================
+
+// ---
+// BASE VALUES
+// ---
+
+$base-font-size: 16px;
+$base-line-height: 1.25;
+
+$base-rhythm: 10px;
+$base-rhythm-half: $base-rhythm / 2;
+
+$base-gutter: 15px;
+$base-gutter-large: 30px;
+
+$max-measure-callout: 800px;
+$max-measure-type: 750px;
+$max-measure-form: 600px;
+$max-width: 1160px;
+
+// ---
+// BREAKPOINTS, GRID & TILES
+// ---
+
+$breakpoints:
+(
+	none: 0px,
+	bps: 768px,
+	bpm: 1024px,
+	bpl: 1440px,
+	bpxl: 1680px
+);
+
+$grid-scale:
+(
+	small:
+	(
+		bp: none,
+		cols: 3,
+		gutter: $base-gutter
+	),
+	medium:
+	(
+		bp: bps,
+		cols: 6,
+		gutter: $base-gutter-large
+	),
+	large:
+	(
+		bp: bpm,
+		cols: 8,
+		gutter: $base-gutter-large
+	),
+	xlarge:
+	(
+		bp: bpm,
+		cols: 10,
+		gutter: $base-gutter-large
+	)
+);
+
+$tiles-scale:
+(
+	small:
+	(
+		bp: none,
+		gutter: $base-gutter,
+		tiles: 2,
+		tiles-alt: 1,
+		tiles-full: 2
+	),
+	medium:
+	(
+		bp: bps,
+		gutter: $base-gutter-large,
+		tiles: 2,
+		tiles-alt: 1,
+		tiles-full: 2
+	),
+	large:
+	(
+		bp: bpm,
+		gutter: $base-gutter-large,
+		tiles: 3,
+		tiles-alt: 2,
+		tiles-full: 4
+	),
+	xlarge:
+	(
+		bp: bpl,
+		gutter: $base-gutter-large,
+		tiles: 4,
+		tiles-alt: 3,
+		tiles-full: 5
+	),
+	xxlarge:
+	(
+		bp: bpxl,
+		gutter: $base-gutter-large,
+		tiles: 5,
+		tiles-alt: 3,
+		tiles-full: 6
+	)
+);
+
+// ---
+// FIXED WIDTHS
+// ---
+
+$fixed-widths:
+(
+	0: 40px,
+	1: 120px,
+	2: 150px,
+	3: 200px,
+	4: 250px,
+	5: 300px,
+	6: 350px,
+	7: 400px,
+	8: 450px,
+	9: 500px,
+	10: 550px
+);
+
+// ---
+// ORDERING
+// ---
+
+$order-scale:
+(
+	before: -1,
+	normal: 1,
+	after: 10,
+	last: 100
+);
+
+// ---
+// TYPOGRAPHIC SCALE
+// ---
+
+$type-scale:
+(
+	15:
+	(
+		size: 146px,
+		line-height: 150px
+	),
+	14:
+	(
+		size: 132px,
+		line-height: 140px
+	),
+	13:
+	(
+		size: 96px,
+		line-height: 100px
+	),
+	12:
+	(
+		size: 72px,
+		line-height: 80px
+	),
+	11:
+	(
+		size: 60px,
+		line-height: 60px
+	),
+	10:
+	(
+		size: 48px,
+		line-height: 50px
+	),
+	9:
+	(
+		size: 36px,
+		line-height: 40px
+	),
+	8: //new 08/11
+	(
+		size: 28px,
+		line-height: 30px
+	),
+	7:
+	(
+		size: 24px,
+		line-height: 35px
+	),
+	6:
+	(
+		size: 22px,
+		line-height: 30px
+	),
+	5:
+	(
+		size: 20px,
+		line-height: 25px
+	),
+	4: //new 08/11
+	(
+		size: 18px,
+		line-height: 25px
+	),
+	3:
+	(
+		size: 16px,
+		line-height: 25px
+	),
+	2:
+	(
+		size: 14px,
+		line-height: 25px
+	),
+	1:
+	(
+		size: 12px,
+		line-height: 20px
+	),
+	0:
+	(
+		size: 10px,
+		line-height: 10px
+	)
+);
+
+$kerning-scale:
+(
+	0: 0,
+	1: 0.0125em,
+	2: 0.025em,
+	3: 0.0375em,
+	4: 0.05em,
+	5: 0.0625em,
+	6: 0.075em,
+	7: 0.0875em,
+	8: 0.1em,
+	9: 0.25em,
+	10: 0.5em
+);
+
+// ---
+// TYPOGRAPHIC STYLE
+// ---
+
+$type-font-title: 'Tungsten A', 'Tungsten B', sans-serif;
+$type-font-status: 'Tungsten Narrow A', 'Tungsten Narrow B', sans-serif;
+$type-font-body: 'Gotham A', 'Gotham B', sans-serif;
+$type-font-description: 'Chronicle Display A', 'Chronicle Display B', serif;
+$type-font-code: Monaco, monospace;
+
+$type-style-title: normal;
+$type-style-body: normal;
+$type-style-description: italic;
+
+$type-kerning-title: map-get($kerning-scale, 1);
+$type-kerning-status: 0; //-0.0125em;
+$type-kerning-desc: map-get($kerning-scale, 2);
+
+$type-weight-light: 300;
+$type-weight-normal: 400;
+$type-weight-medium: 500;
+$type-weight-semibold: 600;
+$type-weight-bold: 700;
+
+// ---
+// GUTTER SPACES
+// 0px -> 50px (5px increments)
+// ---
+
+$gutter-scale:
+(
+	0: $base-rhythm * 0,
+	1: $base-rhythm * 1,
+	2: $base-rhythm * 2,
+	3: $base-rhythm * 3,
+	4: $base-rhythm * 4,
+	5: $base-rhythm * 5,
+	6: $base-rhythm * 6,
+	7: $base-rhythm * 7,
+	8: $base-rhythm * 8,
+	9: $base-rhythm * 9,
+	10: $base-rhythm * 10,
+	11: $base-rhythm * 11,
+	12: $base-rhythm * 12,
+	13: $base-rhythm * 13,
+	14: $base-rhythm * 14,
+	15: $base-rhythm * 15,
+	16: $base-rhythm * 16
+);
+
+// ---
+// COLORS
+// ---
+
+$colors:
+(
+	1: #fff,
+	2: #eee,
+	3: #ccc,
+	4: #9e9e9e,
+	5: #888,
+	6: #666,
+	7: #333,
+	8: #222,
+	9: #111,
+	10: #000,
+	11: #efece4,
+	12: #2b2b2b
+);
+
+$colors-status:
+(
+	stat-a: // Available
+	(
+		1: #26f599,
+		2: #1be68c,
+		3: #13cb79,
+		4: #24ba72 // Hover
+	),
+	stat-as: // Available Soon
+	(
+		1: #fdeb46,
+		2: #f9e52d,
+		3: #dcc914,
+		4: #ccb92c // Hover
+	),
+	stat-na: // Not Available
+	(
+		1: #ff6452,
+		2: #fb4530,
+		3: #d34121,
+		4: #c23d27 // Hover
+	),
+	stat-ft: // Fulltime
+	(
+		1: #0120f9,
+		2: #0a21c4,
+		3: #071ba7,
+		4: #061b88 // Hover
+	),
+	stat-ooo: // Out of Office
+	(
+		1: #ffbf2b,
+		2: #ff9a1a,
+		3: #e77c00,
+		4: #d07100 // Hover
+	),
+	stat-edu: // Student
+	(
+		1: #444,
+		2: #333,
+		3: #222,
+		4: #000 // Hover
+	)
+);
+
+$colors-job-statuses:
+(
+	open: map-get($colors-status, stat-a),
+	opened: map-get($colors-status, stat-a),
+	closed: map-get($colors-status, stat-na),
+
+	hired: map-get($colors-status, stat-a),
+	interested: map-get($colors-status, stat-a),
+	not_interested: map-get($colors-status, stat-na)
+);
+
+$colors-job-types:
+(
+	fulltime:
+	(
+		1: #4a78ff,
+		2: #0a21c4,
+		3: #071ba7,
+		4: #061b88 // Hover
+	),
+	freelance:
+	(
+		1: #ffccc7,
+		2: #fb4530,
+		3: #d34121,
+		4: #c23d27 // Hover
+	)
+);
+
+$colors-social:
+(
+	twitter: #1dabed,
+	facebook: #4e73bf,
+	instagram: #4090dc,
+	linkedin: #167fbc,
+	behance: #1a9bf6,
+	dribbble: #135ffc,
+	github: #000,
+	pinterest: #d43939,
+	vimeo: #1eb4ea,
+	etsy: #f4621f,
+	blog: #000,
+	medium: #1b1a18,
+	codepen: #000
+);
+
+$color-border-base: map-get($colors, 2);
+$color-fill-base: map-get($colors, 1);
+$color-text-base: map-get($colors, 10);
+$color-shadow-base: map-get($colors, 4);
+
+$color-fill-shade: #f7f7f7;
+$color-fill-progress: #0076ff;
+
+$color-validation-error: map-get(map-get($colors-status, stat-na), 3);
+$color-validation-success: map-get(map-get($colors-status, stat-a), 3);
+
+// ---
+// BORDERS
+// ---
+
+$border-width: 1px;
+$border-style: solid;
+
+$border-radius-base: 0;
+$border-radius-rounded: 2px;
+$border-radius-pill: 100px;
+$border-radius-circle: 100%;
+
+// ---
+// LAYERING
+// ---
+
+$layer-scale:
+(
+	0: -1,
+	1: 0,
+	2: 1,
+	3: 10,
+	4: 100,
+	5: 1000
+);
+
+// ---
+// BUTTONS
+// ---
+
+$button-scale:
+(
+	1: // 30px
+	(
+		padding-x: 15px,
+		padding-y: 5px
+	),
+	2: // 40px
+	(
+		padding-x: 20px,
+		padding-y: 10px
+	),
+	3: // 50px
+	(
+		padding-x: 25px,
+		padding-y: 15px
+	),
+	4: // 60px
+	(
+		padding-x: 25px,
+		padding-y: 20px
+	),
+	5: // 70px
+	(
+		padding-x: 30px,
+		padding-y: 25px
+	)
+);
+
+// ---
+// ICONS
+// ---
+
+$icon-scale:
+(
+	base: 20px,
+	tiny: 15px,
+	large: 25px,
+	huge: 30px,
+	massive: 40px,
+	enormous: 50px
+);
+
+// ---
+// OPACITY
+// ---
+
+$opacity-scale:
+(
+	0: 0,
+	1: 0.25,
+	2: 0.375,
+	3: 0.5,
+	4: 0.625,
+	5: 0.75,
+	6: 1
+);
+
+// ---
+// TRANSITION VALUES
+// ---
+
+$transition-easing-base: cubic-bezier(0.4, 0, 0.2, 1);
+$transition-easing-border: $transition-easing-base;
+$transition-easing-text: $transition-easing-base;
+$transition-easing-button: $transition-easing-base;
+
+$transition-timing-base: 0.125s;
+$transition-timing-border: $transition-timing-base;
+$transition-timing-text: $transition-timing-base;
+$transition-timing-button: $transition-timing-base;

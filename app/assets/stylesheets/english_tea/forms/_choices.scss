@@ -1,0 +1,204 @@
+// ==========================================================================
+// Shorthand choice field styling classes
+// ==========================================================================
+
+// ---
+// CHOICE W/BUTTON
+// ---
+
+.btn-choice
+{
+	background-color: map-get($colors, 2);
+	border: $border-width $border-style map-get($colors, 2);
+	color: map-get($colors, 4);
+
+	&:active,
+	&:focus,
+	&:hover
+	{
+		background-color: map-get($colors, 3);
+		border-color: map-get($colors, 3);
+		color: map-get($colors, 6);
+	}
+
+	input:checked + &,
+	input:checked + &:active,
+	input:checked + &:hover
+	{
+		background-color: map-get($colors, 10);
+		border-color: map-get($colors, 10);
+		color: map-get($colors, 1);
+		cursor: not-allowed;
+	}
+
+	// Show/hide 1..8 panels related to the choice buttons
+
+	~ .pnl-choice
+	{
+		display: none;
+	}
+
+	@for $i from 1 through 8
+	{
+		input:nth-of-type(#{$i}):checked ~ & ~ .pnl-choice:nth-of-type(#{$i})
+		{
+			display: block;
+		}
+	}
+}
+
+// ---
+// CHOICE W/LABEL + CHECKBOX
+// ---
+
+.lbl-choice
+{
+	background-color: map-get($colors, 1);
+	border-color: map-get($colors, 10);
+	color: map-get($colors, 10);
+	@include display(inline-flex);
+	@include align-items(center);
+	position: relative;
+	@include prefixer(user-select, none, webkit moz ms spec);
+
+	&:before
+	{
+		background: transparent;
+		border: 2px solid;
+		border-color: inherit;
+		border-radius: $border-radius-rounded;
+		color: inherit;
+		content: '';
+		display: inline-block;
+		height: _rem($base-font-size);
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: _rem($base-font-size);
+
+		input[type="radio"] + &
+		{
+			border-radius: $border-radius-circle;
+		}
+
+		input:checked + &
+		{
+			background-color: inherit;
+			content: url('data:image/svg+xml,#{$icon-check-simple}');
+		}
+	}
+
+	> *
+	{
+		background-color: map-get($colors, 1);
+		display: block;
+		@include flex-grow(1);
+		font-weight: $type-weight-normal;
+		padding-left: _rem($base-font-size + $base-gutter);
+	}
+}
+
+// ---
+// CHOICE W/IMAGE
+// ---
+
+.img-choice
+{
+	opacity: map-get($opacity-scale, 1);
+	@include transition(opacity $transition-timing-base $transition-easing-base);
+
+	input:checked + &
+	{
+		opacity: 1;
+	}
+
+	img {
+		pointer-events: none; // Avoid svg gobbling click events - same fix as .icon
+	}
+}
+
+// ---
+// ON/OFF TOGGLES
+// .btn-toggle used to style text-only button
+// .toggle-on/off used to show hide icons
+// data-toggle-on/off attribute values used to show text labels
+// ---
+
+.toggle
+{
+	@include transition(all $transition-timing-button $transition-easing-button);
+
+	&.btn-toggle
+	{
+		background-color: map-get($colors, 10);
+		border: $border-width $border-style map-get($colors, 10);
+		color: map-get($colors, 1);
+
+		&:active,
+		&:focus,
+		&:hover
+		{
+			background-color: map-get($colors, 8);
+			border-color: map-get($colors, 8);
+		}
+	}
+
+	// Either add the toggled off text to the element
+	// or the direct child element
+	&[data-toggle-off],
+	> [data-toggle-off]
+	{
+		&:after
+		{
+			content: attr(data-toggle-off);
+		}
+	}
+
+	.toggle-off
+	{
+		display: block;
+	}
+
+	.toggle-on
+	{
+		display: none;
+	}
+
+	input:checked + &
+	{
+		&.btn-toggle
+		{
+			background-color: map-get($colors, 1);
+			border: $border-width $border-style map-get($colors, 10);
+			color: map-get($colors, 10);
+
+			&:active,
+			&:focus,
+			&:hover
+			{
+				background-color: map-get($colors, 2);
+			}
+		}
+
+		// Either add the toggled on text to the element
+		// or the direct child element
+		&[data-toggle-on],
+		> [data-toggle-on]
+		{
+			&:after
+			{
+				content: attr(data-toggle-on);
+			}
+		}
+
+		.toggle-off
+		{
+			display: none;
+		}
+
+		.toggle-on
+		{
+			display: block;
+		}
+	}
+}

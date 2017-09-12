@@ -1,0 +1,224 @@
+// ==========================================================================
+// Misc modules and patterns
+// ==========================================================================
+
+// ---
+// CONTENT SECTION
+// Background styles for fullscreen (error type) pages
+// ---
+
+.fullscreen
+{
+  background-position: left top;
+  background-repeat: repeat;
+  background-size: 25%;
+}
+
+// ---
+// INTRINSIC RATIO
+// Make a wrapper element have an intrinsic ratio
+// and stretch inner element to fit
+// ---
+
+.intrinsic
+{
+  @include _intrinsic-ratio;
+}
+
+// ---
+// DIVIDER
+// Adds a small divider rule below as a pseudo element
+// ---
+
+.div
+{
+  &:after
+  {
+    content: '';
+    border-bottom: 1px $border-style $color-border-base;
+    display: block;
+    height: 0;
+    margin: _rem($base-gutter) auto;
+    width: _rem($base-gutter-large);
+  }
+
+  &.div-rev:after
+  {
+    border-color: map-get($colors, 8);
+  }
+}
+
+// ---
+// STATUS
+// Availability indicator
+// ---
+
+.status
+{
+  background-color: map-get($colors, 10);
+  border-radius: 100%;
+  display: inline-block;
+  height: _rem($base-font-size / 2);
+  position: relative;
+  top: -1px;
+  vertical-align: middle;
+  width: _rem($base-font-size / 2);
+
+  &.status-small
+  {
+    height: _rem(6px);
+    top: auto;
+    width: _rem(6px);
+  }
+}
+
+// ---
+// TRIANGLES
+// ---
+
+.tri
+{
+  &:before
+  {
+    border-color: transparent transparent map-get($colors, 1) transparent;
+    border-style: solid;
+    border-width: 0 _rem($base-gutter) _rem($base-gutter) _rem($base-gutter);
+    content: '';
+    display: block;
+    height: 0;
+    left: 0;
+    position: absolute;
+    top: _rem(-$base-gutter);
+    width: 0;
+  }
+
+  &.pos-xcenter
+  {
+    &:before
+    {
+      left: 50%;
+      @include transform(translate3d(-50%, 0, 0));
+    }
+  }
+
+  &.pos-tpush
+  {
+    top: calc(100% + #{_rem($base-gutter)});
+  }
+}
+
+// ---
+// FLIPBOARD CHARS
+// ---
+
+.flip
+{
+  border: $border-width $border-style map-get($colors, 3);
+  border-radius: $border-radius-rounded;
+  padding: 0 3px;
+  position: relative;
+
+  &:first-child
+  {
+    margin-left: 2px;
+  }
+
+  &:last-child
+  {
+    margin-right: 2px;
+  }
+
+  &:before
+  {
+    border-top: $border-width $border-style map-get($colors, 3);
+    content: '';
+    display: block;
+    font-size: 0;
+    height: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+// ---
+// IMAGE PROGRESS INDICATOR
+// ---
+
+.progress
+{
+  background-color: $color-fill-progress;
+  height: _rem($base-rhythm-half);
+  width: 0;
+}
+
+// ---
+// SIMPLE HOVER SHOW/HIDE
+// ---
+
+@include _mq(map-get($breakpoints, bpm))
+{
+  .no-touchevents
+  {
+    .hov
+    {
+      .hov-bg
+      {
+        opacity: 1;
+        @include transition(opacity $transition-timing-base $transition-easing-base);
+        @include _will-change();
+      }
+
+      .hov-show
+      {
+        opacity: 0;
+        @include transition(all $transition-timing-base $transition-easing-base);
+        visibility: hidden;
+      }
+
+      &:active,
+      &:focus,
+      &:hover
+      {
+        opacity: 1;
+
+        .hov-bg
+        {
+          opacity: map-get($opacity-scale, 3);
+        }
+
+        .hov-show
+        {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+}
+
+// ---
+// INDICATOR DOT
+// ---
+
+.dot
+{
+  position: relative;
+
+  &:before
+  {
+    background-color: map-deep-get($colors-status, stat-na, 3);
+    border-radius: $border-radius-circle;
+    content: '';
+    display: block;
+    font-size: 0;
+    height: 0.5rem;
+    left: _rem(-$base-gutter);
+    position: absolute;
+    top: _rem(-2px);
+    width: 0.5rem;
+  }
+}

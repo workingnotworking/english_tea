@@ -1,0 +1,264 @@
+// ==========================================================================
+// Element sizing classes
+// ==========================================================================
+
+// ---
+// ELASTIC WIDTHS
+// ---
+
+.minstretch
+{
+	min-width: 100% !important;
+}
+
+.minvstretch
+{
+	min-width: 100vw !important;
+}
+
+.fit
+{
+	max-width: 100% !important;
+}
+
+.vfit
+{
+	max-width: 100vw !important;
+}
+
+.unfit
+{
+	max-width: none !important;
+}
+
+.stretch
+{
+	width: 100% !important;
+}
+
+.vstretch
+{
+	width: 100vw !important;
+}
+
+.unstretch
+{
+	width: auto !important;
+}
+
+// ---
+// ELASTIC HEIGHTS
+// ---
+
+.minfull
+{
+	min-height: 100% !important;
+}
+
+.minvfull
+{
+	min-height: 100vh !important;
+}
+
+.maxfull
+{
+	max-height: 100% !important;
+}
+
+.maxvfull
+{
+	max-height: 100vh !important;
+}
+
+.maxunfull
+{
+	max-height: none !important;
+}
+
+.full
+{
+	height: 100% !important;
+}
+
+.vfull
+{
+	height: 100vh !important;
+}
+
+.unfull
+{
+	height: auto !important;
+}
+
+@include _bp-prefixer-basic
+{
+	// ---
+	// ELASTIC WIDTHS
+	// ---
+
+	&minstretch
+	{
+		min-width: 100% !important;
+	}
+
+	&minvstretch
+	{
+		min-width: 100vw !important;
+	}
+
+	&fit
+	{
+		max-width: 100% !important;
+	}
+
+	&vfit
+	{
+		max-width: 100vw !important;
+	}
+
+	&unfit
+	{
+		max-width: none !important;
+	}
+
+	&stretch
+	{
+		width: 100% !important;
+	}
+
+	&vstretch
+	{
+		width: 100vw !important;
+	}
+
+	&unstretch
+	{
+		width: auto !important;
+	}
+
+	// ---
+	// ELASTIC HEIGHTS
+	// ---
+
+	&minfull
+	{
+		min-height: 100% !important;
+	}
+
+	&minvfull
+	{
+		min-height: 100vh !important;
+	}
+
+	&maxfull
+	{
+		max-height: 100% !important;
+	}
+
+	&maxvfull
+	{
+		max-height: 100vh !important;
+	}
+
+	&maxunfull
+	{
+		max-height: none !important;
+	}
+
+	&full
+	{
+		height: 100% !important;
+	}
+
+	&vfull
+	{
+		height: 100vh !important;
+	}
+
+	&unfull
+	{
+		height: auto !important;
+	}
+}
+
+// ---
+// MAX WIDTH
+// Width limited section
+// ---
+
+.mw
+{
+  margin-right: auto;
+  margin-left: auto;
+  max-width: _rem($max-width);
+  padding-right: _rem($base-gutter);
+  padding-left: _rem($base-gutter);
+
+  @include _mq(map-get($breakpoints, bps))
+  {
+    padding-right: _rem($base-gutter-large);
+    padding-left: _rem($base-gutter-large);
+  }
+}
+
+// ---
+// COPY AND FORM SECTIONS
+// Set a measure for freeform text and form sections
+// ---
+
+.mw-copy
+{
+	max-width: _rem($max-measure-type);
+}
+
+.mw-form
+{
+  max-width: _rem($max-measure-form);
+}
+
+.mw-callout
+{
+  max-width: _rem($max-measure-callout);
+}
+
+// ---
+// FIXED WIDTHS
+// ---
+
+@include _bp-prefixer(w)
+{
+	@each $key, $val in $fixed-widths
+	{
+		&#{$key}
+		{
+			max-width: _rem($val) !important; // Make safari behave
+			width: _rem($val) !important;
+		}
+	}
+}
+
+// ---
+// MIN/MAX FIXED HEIGHTS
+// ---
+
+@include _bp-prefixer(minh)
+{
+	@for $i from 0 through 10
+	{
+		&#{$i + 1}
+		{
+			min-height: _rem(($i) * 50 + 100px) !important;
+		}
+	}
+}
+
+@include _bp-prefixer(maxh)
+{
+	@for $i from 0 through 10
+	{
+		&#{$i + 1}
+		{
+			max-height: _rem(($i) * 50 + 100px) !important;
+		}
+	}
+}

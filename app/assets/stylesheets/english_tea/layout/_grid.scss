@@ -1,0 +1,210 @@
+// ==========================================================================
+// Flexbox-based grid classes
+// ==========================================================================
+
+// ---
+// GRID CONTAINER W/GUTTERS
+// ---  
+
+.g 
+{
+  @include display(flex !important);
+  @include flex-wrap(wrap);
+
+  padding-right: _rem($base-gutter);
+
+  @include _mq(map-get($breakpoints, bps))
+  {
+    padding-right: _rem($base-gutter-large);
+  }
+
+  > .g
+  {
+    padding-right: 0;
+  }
+}
+
+  // ---
+  // FLUSH GRID
+  // Force flush (w/breakpoint prefixed versions)
+  // ---  
+
+  .g-flush 
+  {
+    padding: 0;
+  }
+
+  @include _bp-prefixer-basic
+  {
+    &g-flush
+    {
+      padding: 0;
+    }
+  }
+
+  // ---
+  // GUTTER GRID
+  // Force gutters (w/breakpoint prefixed versions)
+  // ---  
+
+  .g-gutter 
+  {
+    padding-right: _rem($base-gutter);
+  }
+
+  @include _bp-prefixer-basic
+  {
+    &g-gutter
+    {
+      padding-right: _rem($base-gutter-large);
+    }
+  }
+
+  // ---
+  // ALIGN ITEMS
+  // ---
+
+  .g-top
+  {
+    @include align-items(flex-start);
+  }
+
+  .g-middle
+  {
+    @include align-items(center);
+  }
+
+  .g-bottom
+  {
+    @include align-items(flex-end);
+  }
+
+  .g-stretch
+  {
+    @include align-items(stretch);
+  }
+
+  .g-baseline
+  {
+    @include align-items(baseline);
+  }
+
+  // ---
+  // ALIGN CONTENT
+  // ---
+
+  .g-content-top
+  {
+    @include align-content(flex-start);
+  }
+
+  .g-content-middle
+  {
+    @include align-content(center);
+  }
+
+  .g-content-bottom
+  {
+    @include align-content(flex-end);
+  }
+
+  .g-content-stretch
+  {
+    @include align-content(stretch);
+  }
+
+  .g-content-baseline
+  {
+    @include align-content(baseline);
+  }
+
+  // ---
+  // JUSTIFY CONTENT
+  // ---
+
+  .g-left
+  {
+  	@include justify-content(flex-start);
+  }
+
+  .g-center
+  {
+  	@include justify-content(center);
+  }
+
+  .g-right
+  {
+  	@include justify-content(flex-end);
+  }
+
+  .g-between
+  {
+  	@include justify-content(space-between);
+  }
+
+  .g-around
+  {
+  	@include justify-content(space-around);
+  }
+
+// ---
+// GRID COLUMNS
+// ---
+
+.gc 
+{
+	@include flex-shrink(0);
+  width: 100%;
+
+  @mixin _generate-cols($cols, $gutter)
+  {
+    @for $i from 1 through $cols
+    {
+      &-#{$i}of#{$cols}
+      {
+        padding-left: $gutter;
+        width: percentage($i / $cols);
+      }
+    }
+  }
+
+	@each $key, $val in $grid-scale
+	{
+    $_bp: map-get($val, bp);
+    $_bp-val: map-get($breakpoints, $_bp);
+
+    $_cols: map-get($val, cols);
+    $_gutter: _rem(map-get($val, gutter));
+
+    @if $_bp == none
+    {
+      @include _generate-cols($_cols, $_gutter);
+    } 
+    @else 
+    {
+		  @include _mq($_bp-val)
+		  {
+        @include _generate-cols($_cols, $_gutter);
+		  }
+    }
+	}
+}
+
+  // ---
+  // FLUSH GRID COLUMN
+  // ---  
+
+  .gc-flush 
+  {
+    padding-left: 0;
+  }
+  
+  // ---
+  // STRETCH-TO-FILL GRID COLUMN
+  // ---  
+
+  .gc-fill 
+  {
+    @include flex-grow(1);
+    min-width: none;
+  }

@@ -1,0 +1,93 @@
+// ==========================================================================
+// Display classes
+// ==========================================================================
+
+.inline
+{
+	display: inline !important;
+}
+
+.block
+{
+	display: block !important;
+}
+
+.inline-block
+{
+	display: inline-block !important;
+}
+
+.table
+{
+	display: table !important;
+}
+
+.table-cell
+{
+	display: table-cell !important;
+}
+
+// ---
+// OVERFLOW
+// ---
+
+.o
+{
+	overflow: auto !important;
+}
+
+.ox
+{
+	overflow-x: auto !important;
+}
+
+.oy
+{
+	overflow-y: auto !important;
+}
+
+.o-hidden
+{
+	overflow: hidden !important;
+}
+
+.ox-hidden
+{
+	overflow-x: hidden !important;
+}
+
+.oy-hidden
+{
+	overflow-y: hidden !important;
+}
+
+.o-scroll
+{
+	overflow: scroll !important;
+}
+
+.ox-scroll
+{
+	overflow-x: scroll !important;
+}
+
+.oy-scroll
+{
+	overflow-y: scroll !important;
+	-webkit-overflow-scrolling: touch;
+}
+
+.o-visible
+{
+	overflow: visible;
+}
+
+.ox-visible
+{
+	overflow-x: visible;
+}
+
+.oy-visible
+{
+	overflow-y: visible;
+}

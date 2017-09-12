@@ -1,0 +1,14 @@
+// ==========================================================================
+// Complex Tabs / Tabset & Tab Panels
+// ==========================================================================
+
+.tabSet--js {
+  .tabPanelWrap {
+    position: relative;
+    overflow: auto;
+  }
+  .tab,
+  .tabPanel {
+    transition: all 500ms cubic-bezier(0.57, 0.07, 0.25, 0.98);
+  }
+}

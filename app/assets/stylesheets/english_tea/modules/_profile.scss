@@ -1,0 +1,239 @@
+// ==========================================================================
+// Profiles & Mini Profile patterns & modules
+// ==========================================================================
+
+// ---
+// MINI PROFILES
+// Housed within overlay
+// ---
+
+.profile-mini
+{
+	$info-width: 380px;
+
+	.profile-mini-projects
+	{
+		@include _will-change;
+
+		width: calc(100% - #{_rem($info-width)});
+	}
+
+	.profile-mini-info
+	{
+		width: 100%;
+
+		@include _mq(map-get($breakpoints, bpm))
+		{
+			width: _rem($info-width);
+		}
+	}
+}
+
+// ---
+// FULL PROFILES
+// Own-page, full user profile pages
+// ---
+
+	// ---
+	// HERO & WINDOW SECTIONS
+	// Page hero section and cover image "peek-thru" window
+	// ---
+
+	.profile-hero
+	{
+		// Ensure a new stacking context is created so that any
+		// `position: fixed` child elem is relative to this elem
+		@include _will-change();
+
+		height: 50vmin;
+
+		@include _mq(map-get($breakpoints, bps))
+		{
+			height: 60vmin;
+		}
+	}
+
+	// ---
+	// TOOLBOX SECTION
+	// Includes sticky toolbox "navbar"
+	// ---
+
+	.profile-toolbox-navbar
+	{
+		@include display(flex);
+		@include flex-wrap(wrap);
+		@include justify-content(center);
+
+		@include _mq(map-get($breakpoints, bps))
+		{
+			@include flex-wrap(nowrap);
+		}
+
+		@include _mq(map-get($breakpoints, bpm))
+		{
+			@include justify-content(flex-end);
+		}
+
+		> li
+		{
+			@include flex-grow(1);
+			@include flex-shrink(0);
+
+			@include _mq(map-get($breakpoints, bps))
+			{
+				@include flex-grow(0);
+			}
+
+			&.profile-toolbox-info
+			{
+				@include flex-grow(1);
+			}
+
+			&.profile-toolbox-message
+			{
+				@include order(-1);
+
+				@include _mq(map-get($breakpoints, bps))
+				{
+					@include order(0);
+				}
+			}
+		}
+
+			// Increase normal large avatar by 1px to compensate for
+			// lack of top border & align with other toolbox item borders
+			.avatar-large
+			{
+				$avatar-size: _rem(($base-rhythm * 6) + 1px);
+
+        height: $avatar-size;
+        width: $avatar-size;
+			}
+	}
+
+	.profile-toolbox-avatar,
+	.profile-toolbox-info,
+	.profile-toolbox-rate
+	{
+		display: none;
+	}
+
+	.profile-toolbox.stick-top
+	{
+		.profile-toolbox-avatar
+		{
+			display: block;
+		}
+
+		.profile-toolbox-info
+		{
+			@include display(flex);
+			@include flex-direction(column);
+			@include justify-content(center);
+		}
+
+		@include _mq(map-get($breakpoints, bpm))
+		{
+			.profile-toolbox-rate
+			{
+				@include display(flex);
+				@include align-items(center);
+			}
+		}
+	}
+
+	// ---
+	// PROFILE SIDEBAR LAYOUT
+	// Sidebar containing core user data
+	// ---
+
+	.profile-avatar
+	{
+		max-width: _rem($base-rhythm * 13);
+
+		@include _mq(map-get($breakpoints, bps))
+		{
+			max-width: 100%;
+		}
+	}
+
+	.profile-action-item
+	{
+		width: calc(50% - #{_rem($base-gutter / 2)});
+
+		@include _mq(map-get($breakpoints, bps))
+		{
+			width: 100%;
+		}
+	}
+
+	.profile-social-item
+	{
+		width: percentage(1 / 6);
+
+		@include _mq(map-get($breakpoints, bps))
+		{
+			width: percentage(1 / 4);
+		}
+	}
+
+// ---
+// STATUS UPDATING
+// Styling for the pikaday datepicker
+// ---
+
+.status-update
+{
+	.status-update-choice
+	{
+		@include transition(color $transition-timing-text $transition-easing-text);
+
+		&:checked + .status-update-choice-label
+		{
+			display: none;
+		}
+	}
+
+	@each $key, $val in $colors-status
+	{
+		.status-update-current[data-status="#{$key}"]
+		{
+			color: map-get($val, 2);
+		}
+
+		// Hover states for items with `data-status` attributes
+		.status-update-choice-label[data-status="#{$key}"]
+		{
+			&:active,
+			&:focus,
+			&:hover
+			{
+				color: map-get($val, 2);
+			}
+		}
+	}
+
+	.status-update-date
+	{
+		$_datepicker-header-type: map-get($type-scale, 7);
+		$_datepicker-table-type: map-get($type-scale, 3);
+
+		.pika-title
+		{
+			.pika-label
+			{
+				font-size: #{_rem(map-get($_datepicker-header-type, size))};
+				line-height: #{_rem(map-get($_datepicker-header-type, line-height))};
+			}
+		}
+
+		.pika-table
+		{
+			td, th
+			{
+				font-size: #{_rem(map-get($_datepicker-table-type, size))};
+				line-height: #{_rem(map-get($_datepicker-table-type, line-height))};
+			}
+		}
+	}
+}

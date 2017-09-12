@@ -1,0 +1,32 @@
+// ==========================================================================
+// Listings module
+// ==========================================================================
+
+.listing 
+{
+
+	> a
+	{
+		@include transition(border-color $transition-timing-base $transition-easing-base);
+
+		&:active,
+		&:focus,
+		&:hover 
+		{
+			border-color: map-get($colors, 10);
+			opacity: 1;
+
+			.listing-location,
+			.listing-updated
+			{
+				display: none;
+			}
+
+			.listing-experience,
+			.listing-ctas
+			{
+				display: block !important;
+			}
+		}
+	}
+}

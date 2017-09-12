@@ -1,0 +1,51 @@
+// ==========================================================================
+// Shorthand file uploader control styling classes
+// ==========================================================================
+
+.upload-item
+{
+	.upload-delete
+	{
+		display: none;
+	}
+
+	.upload-item-thumbnail
+	{
+		height: 0;
+		padding-bottom: 100%;
+
+		&:after
+		{
+			$icon-size: map-get($icon-scale, enormous);
+
+			@include _pseudo-elem(_rem($icon-size * 2), _rem($icon-size * 2));
+
+			background: transparent url('data:image/svg+xml,#{$icon-upload}') no-repeat center center;
+			opacity: 0.125;
+		}
+
+		&.has-media
+		{
+			&:after
+			{
+				display: none;
+			}
+
+			&:active,
+			&:focus,
+			&:hover
+			{
+				.upload-delete
+				{
+					display: block;
+				}
+			}
+		}
+	}
+
+	.upload-item-media
+	{
+		min-height: 100%;
+		width: 100%;
+	}
+}

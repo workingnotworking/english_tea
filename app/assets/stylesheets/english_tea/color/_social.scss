@@ -1,0 +1,21 @@
+// ==========================================================================
+// Social network color declaration classes
+// ==========================================================================
+
+@each $key, $val in $colors-social
+{
+	.c-txt-soc-#{$key}
+	{
+		color: $val !important;
+	}
+
+	.c-fill-soc-#{$key}
+	{
+		background-color: $val !important;
+	}
+
+	.c-b-soc-#{$key}
+	{
+		border-color: $val !important;
+	}
+}

@@ -1,0 +1,36 @@
+// ==========================================================================
+// Round bubble indicator styling classes
+// ==========================================================================
+
+// ---
+// SIMPLE NOTIFICATION BUBBLE
+// ---
+
+.bubble
+{
+  $type: map-get($type-scale, 0);
+
+  background-color: map-get($colors, 10);
+  border-radius: _rem($base-rhythm);
+  color: map-get($colors, 1);
+  display: block;
+  font-size: _rem(map-get($type, size));
+  height: _rem($base-rhythm * 2);
+  line-height: _rem($base-rhythm * 2);
+  min-width: _rem($base-rhythm * 2);
+  padding: 0 _rem($base-rhythm-half);
+  text-align: center;
+}
+
+// This resides out of our type/sizing hierachy
+.bubble-small
+{
+  $dimension: _rem(18px);
+
+  font-size: 8px; // using _rem seems to end up with 9px in Chrome
+  font-weight: $type-weight-medium;
+  height: $dimension;
+  line-height: $dimension;
+  min-width: $dimension;
+  padding: 0;
+}

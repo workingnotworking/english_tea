@@ -1,0 +1,37 @@
+// ==========================================================================
+// Page modals, used for quick actions, confirmations, etc
+// ==========================================================================
+
+.modal
+{
+	background-color: map-get($colors, 1);
+
+	@include _mq(map-get($breakpoints, bps))
+	{
+		background-color: rgba(map-get($colors, 10), 0.625);
+	}
+
+	.modal-content
+	{
+		@include _box-shadow(5);
+
+		@include _mq(map-get($breakpoints, bps))
+		{
+			max-width: _rem(650px);
+		}
+
+		@include _mq(map-get($breakpoints, bpm))
+		{
+			width: 45%;
+		}
+	}
+
+	@include _mq(map-get($breakpoints, bps))
+	{
+		.modal-scrollable
+		{
+			min-height: 50vh;
+			max-height: 65vh;
+		}
+	}
+}

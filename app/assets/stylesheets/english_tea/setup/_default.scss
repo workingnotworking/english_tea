@@ -1,0 +1,286 @@
+// ==========================================================================
+// Base styles: opinionated element defaults
+// ==========================================================================
+
+*
+{
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video
+{
+  font-family: inherit;
+  font-weight: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+body
+{
+  font-size: _rem(map-get(map-get($type-scale, 3), size));
+  line-height: _rem(map-get(map-get($type-scale, 3), line-height));
+}
+
+// ---
+// TEXTUAL ELEMENTS
+// ---
+
+p
+{
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a
+{
+  color: inherit;
+  text-decoration: none;
+  @include transition(all $transition-timing-text $transition-easing-text);
+
+  &:hover
+  {
+    opacity: 0.75;
+  }
+
+  &:focus
+  {
+    outline: none;
+  }
+}
+
+b, strong,
+i, em,
+cite, mark,
+small
+{
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+b,
+strong
+{
+  font-weight: $type-weight-medium;
+}
+
+i,
+em
+{
+  font-style: italic;
+}
+
+cite
+{
+  font-style: normal;
+}
+
+mark
+{
+  background-color: transparent;
+  color: inherit;
+
+  @include transition(all $transition-timing-text $transition-easing-text);
+
+  &:focus
+  {
+    outline: none;
+  }
+}
+
+code,
+pre
+{
+  color: map-get(map-get($colors-status, stat-a), std);
+  font-family: $type-font-code;
+  font-weight: $type-weight-normal;
+  tab-size: 3;
+}
+
+ul,
+ol
+{
+  list-style: none;
+}
+
+hr
+{
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+// ---
+// MEDIA
+// ---
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video
+{
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+// ---
+// FORMS & CTAS
+// ---
+
+input,
+select,
+textarea,
+[contenteditable]
+{
+  &:focus
+  {
+    outline: none;
+  }
+}
+
+button,
+[type=submit],
+[type=button]
+{
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0;
+  background-color: transparent;
+  background-image: none;
+  border: 0;
+  vertical-align: middle;
+  white-space: nowrap;
+
+  @include prefixer(appearance, none, webkit);
+  @include prefixer(user-select, none, webkit moz ms o spec);
+
+  &:focus
+  {
+    outline: none;
+  }
+}
+
+fieldset
+{
+  border: 0;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+}
+
+textarea
+{
+  resize: vertical;
+}
+
+input[autocomplete="off"]::-webkit-contacts-auto-fill-button
+{
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+  margin: 0;
+}
+
+// ---
+// HIGHLIGHTED TEXT
+// ---
+
+::-moz-selection
+{
+  background: map-get($colors, 2);
+  text-shadow: none;
+}
+
+::selection
+{
+  background: map-get($colors, 2);
+  text-shadow: none;
+}

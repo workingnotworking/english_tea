@@ -1,0 +1,38 @@
+// ==========================================================================
+// Fadein: content revealing elements
+// ==========================================================================
+
+.fadein {
+  opacity: 1;
+  transform: translate3d(0,0,0);
+}
+.fadein--js {
+  @include transition(all 500ms cubic-bezier(0.57, 0.07, 0.25, 0.98));
+}
+.fadein--staged {
+  opacity: 0;
+  @include transform(translate3d(0, 20px, 0));
+}
+
+// customizations
+.homebarishigh__image {
+  &.fadein--js {
+    @include transition-timing-function(cubic-bezier(0.860, 0.000, 0.070, 1.000)); // easeInOutQuint
+  }
+}
+.homearsenal__image--bg,
+.homearsenal__image--float {
+  &.fadein--js {
+    @include transition(all 750ms cubic-bezier(0.57, 0.07, 0.25, 0.98));
+  }
+}
+.homearsenal__image--bg {
+  &.fadein--staged {
+    @include transform(translate3d(0, 140px, 0));
+  }
+}
+.homearsenal__image--float {
+  &.fadein--staged {
+    @include transform(translate3d(0, 100px, 0));
+  }
+}

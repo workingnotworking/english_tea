@@ -1,0 +1,57 @@
+// ==========================================================================
+// Text, Fill, Shade and Effects color declaration classes
+// ==========================================================================
+
+// ---
+// TEXT COLORS
+// Pulled from $colors
+// ---
+
+@each $key, $val in $colors
+{
+	.c-txt#{$key}
+	{
+		color: $val !important;
+	}
+}
+
+// ---
+// FILL (BG) COLORS
+// Pulled from $colors
+// ---
+
+@each $key, $val in $colors
+{
+	.c-fill#{$key}
+	{
+		background-color: $val !important;
+	}
+}
+
+// ---
+// UNIQUE SHADE COLOR
+// ---
+
+.c-fill-shade
+{
+	background-color: $color-fill-shade !important;
+}
+
+.c-txt-shade
+{
+	color: $color-fill-shade !important;
+}
+
+.c-b-shade
+{
+	border-color: $color-fill-shade !important;
+}
+
+// ---
+// EFFECTS
+// ---
+
+.bw
+{
+	@include prefixer(filter, grayscale(100%), webkit spec);
+}

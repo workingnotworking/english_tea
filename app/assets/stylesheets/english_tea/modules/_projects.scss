@@ -1,0 +1,55 @@
+// ==========================================================================
+// Portfolios for Profiles and Mini Profiles
+// ==========================================================================
+
+.project,
+.project-sizer
+{
+	max-width: calc((100% - #{_rem($base-gutter)}) / 2);
+	width: 100%;
+
+	@include _mq(map-get($breakpoints, bps))
+	{
+		max-width: calc((100% - #{_rem($base-gutter-large)}) / 2);
+	}
+
+	.projects-fullsize &
+	{
+		@include _mq(map-get($breakpoints, bps))
+		{
+			max-width: calc((100% - #{_rem($base-gutter-large * 2)}) / 3);
+		}
+	}
+}
+
+.project
+{
+	margin-bottom: _rem($base-gutter);
+
+	@include _mq(map-get($breakpoints, bps))
+	{
+		margin-bottom: _rem($base-gutter-large);
+	}
+
+	// Don't need global <a> opacity change on hover here
+	.project-action
+	{
+		&:active,
+		&:focus,
+		&:hover
+		{
+			opacity: 1;
+		}
+	}
+}
+
+// Set gutter sizes depending on breakpoint
+.project-gutter-sizer
+{
+	width: $base-gutter;
+
+	@include _mq(map-get($breakpoints, bps))
+	{
+		width: $base-gutter-large;
+	}
+}

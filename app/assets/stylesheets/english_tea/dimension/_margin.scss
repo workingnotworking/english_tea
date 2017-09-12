@@ -1,0 +1,196 @@
+// ==========================================================================
+// Margin dimension classes
+// ==========================================================================
+
+@include _bp-prefixer(m)
+{
+	// ---
+	// HALF BASE RHYTHM SHORTHANDS
+	// ---
+
+	&half
+	{
+		margin: _rem($base-rhythm-half) !important;
+	}
+
+	&thalf
+	{
+		margin-top: _rem($base-rhythm-half) !important;
+	}
+
+	&rhalf
+	{
+		margin-right: _rem($base-rhythm-half) !important;
+	}
+
+	&bhalf
+	{
+		margin-bottom: _rem($base-rhythm-half) !important;
+	}
+
+	&lhalf
+	{
+		margin-left: _rem($base-rhythm-half) !important;
+	}
+
+	// ---
+	// X/Y MARGIN SHORTHANDS
+	// ---
+
+	&xhalf
+	{
+		margin-right: _rem($base-rhythm-half) !important;
+		margin-left:_rem($base-rhythm-half) !important;
+	}
+
+	&yhalf
+	{
+		margin-top: _rem($base-rhythm-half) !important;
+		margin-bottom: _rem($base-rhythm-half) !important;
+	}
+
+	@each $key, $val in $gutter-scale
+	{
+		&#{$key}
+		{
+			margin: _rem($val) !important;
+		}
+
+		&t#{$key}
+		{
+			margin-top: _rem($val) !important;
+		}
+
+		&r#{$key}
+		{
+			margin-right: _rem($val) !important;
+		}
+
+		&b#{$key}
+		{
+			margin-bottom: _rem($val) !important;
+		}
+
+		&l#{$key}
+		{
+			margin-left: _rem($val) !important;
+		}
+
+		// ---
+		// X/Y MARGIN SHORTHANDS
+		// ---
+
+		&x#{$key}
+		{
+			margin-right: _rem($val) !important;
+			margin-left: _rem($val) !important;
+		}
+
+		&y#{$key}
+		{
+			margin-top: _rem($val) !important;
+			margin-bottom: _rem($val) !important;
+		}
+
+		// ---
+		// NEGATIVE MARGINS
+		// ---
+
+		&t-neg#{$key}
+		{
+			margin-top: _rem(-$val) !important;
+		}
+
+		&r-neg#{$key}
+		{
+			margin-right: _rem(-$val) !important;
+		}
+
+		&b-neg#{$key}
+		{
+			margin-bottom: _rem(-$val) !important;
+		}
+
+		&l-neg#{$key}
+		{
+			margin-left: _rem(-$val) !important;
+		}
+	}
+
+	// ---
+	// RESET MARGINS
+	// ---
+
+	&auto
+	{
+		margin: auto !important;
+	}
+
+	&tauto
+	{
+		margin-top: auto !important;
+	}
+
+	&rauto
+	{
+		margin-right: auto !important;
+	}
+
+	&bauto
+	{
+		margin-bottom: auto !important;
+	}
+
+	&lauto
+	{
+		margin-left: auto !important;
+	}
+
+	&xauto
+	{
+		margin-right: auto !important;
+		margin-left: auto !important;
+	}
+
+	&yauto
+	{
+		margin-top: auto !important;
+		margin-bottom: auto !important;
+	}
+
+	&x-neggutter-half
+	{
+		margin-right: _rem(-$base-gutter) !important;
+		margin-left: _rem(-$base-gutter) !important;
+	}
+
+	&y-neggutter-half
+	{
+		margin-top: _rem(-$base-gutter) !important;
+		margin-bottom: _rem(-$base-gutter) !important;
+	}
+}
+
+.mx-neggutter
+{
+	margin-right: _rem(-$base-gutter) !important;
+	margin-left: _rem(-$base-gutter) !important;
+
+ 	@include _mq(map-get($breakpoints, bps))
+ 	{
+		margin-right: _rem(-$base-gutter-large) !important;
+		margin-left: _rem(-$base-gutter-large) !important;
+ 	}
+}
+
+.my-neggutter
+{
+	margin-top: _rem(-$base-gutter) !important;
+	margin-bottom: _rem(-$base-gutter) !important;
+
+ 	@include _mq(map-get($breakpoints, bps))
+ 	{
+		margin-top: _rem(-$base-gutter-large) !important;
+		margin-bottom: _rem(-$base-gutter-large) !important;
+ 	}
+}

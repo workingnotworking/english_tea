@@ -1,0 +1,57 @@
+// ==========================================================================
+// Overlaid menus with dropdowns
+// ==========================================================================
+
+.menu 
+{
+	.menu-dropdown
+	{
+		@include _box-shadow(2);
+		display: none;
+	}
+}
+
+// Click-based menu dropdowns
+.menu-open
+{
+	> .menu-dropdown 
+	{
+		display: block;
+	}
+
+	.has-subnav
+	{
+		&:active,
+		&:focus,
+		&:hover
+		{
+			.menu-dropdown
+			{
+				display: block;
+			}
+		}
+	}
+}	
+
+// Hover-based menu dropdowns
+.menu-quicklook
+{
+	&:active, 
+	&:focus,
+	&:hover
+	{
+		.menu-dropdown-trigger
+		{
+			background-color: map-get($colors, 1) !important;
+			border-bottom-color: map-get($colors, 1) !important;
+			z-index: map-get($layer-scale, 5) !important;
+		}
+
+		.menu-dropdown 
+		{
+			display: block;
+			top: calc(100% - 1px);
+			width: auto;
+		}
+	}
+}

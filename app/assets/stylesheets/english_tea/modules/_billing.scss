@@ -1,0 +1,60 @@
+// ==========================================================================
+// Billing plans module
+// ==========================================================================
+
+// Make sure everything we change is ready to go smoothly
+.billing-plan,
+.billing-plan-header,
+.billing-plan-frequency,
+.billing-plan-frequency .lbl-choice,
+.billing-plan-frequency .lbl-choice > b
+{
+  @include transition(all $transition-timing-base $transition-easing-base);
+}
+
+.billing-plan
+{
+  // Current state for highlighting the current overall plan
+  &.billing-plan-current
+  {
+    border-color: map-get($colors, 10) !important;
+
+    .billing-plan-header
+    {
+      background-color: map-get($colors, 10) !important;
+      border-color: map-get($colors, 10) !important;
+      color: map-get($colors, 1) !important;
+    }
+
+    .billing-plan-frequency
+    {
+      &:last-child
+      {
+        border-color: map-get($colors, 10) !important;
+      }
+    }
+
+    .billing-plan-status
+    {
+      border-bottom-color: map-get($colors, 10) !important;
+    }
+  }
+
+    // Current state for highlighting the current plan frequency
+    .billing-plan-frequency-current
+    {
+      background-color: $color-fill-shade !important;
+
+      .lbl-choice
+      {
+        background-color: map-get($colors, 10) !important;
+        border-color: map-get($colors, 10) !important;
+        color: map-get($colors, 10) !important;
+
+        > b
+        {
+          background-color: $color-fill-shade !important;
+        }
+      }
+    }
+}

@@ -1,0 +1,46 @@
+// ==========================================================================
+// Job color declaration classes
+// Pulled from $colors-job-statuses/types
+// ==========================================================================
+
+@each $key, $val in $colors-job-statuses
+{
+	.c-b-job-#{$key}
+	{
+		border-color: map-get($val, 3) !important;
+	}
+
+	.c-fill-job-#{$key}
+	{
+		background-color: map-get($val, 3) !important;
+	}
+
+	.c-txt-job-#{$key}
+	{
+		color: map-get($val, 3) !important;
+	}
+}
+
+// Just dealing with job types (fulltime, freelance, etc)
+@each $key, $val in $colors-job-types
+{
+	.c-b-job-#{$key}
+	{
+		border-color: map-get($val, 2) !important;
+	}
+
+	.c-fill-job-#{$key}
+	{
+		background-color: map-get($val, 2) !important;
+	}
+
+	.c-txt-job-#{$key}
+	{
+		color: map-get($val, 2) !important;
+	}
+
+	.c-txt-job-#{$key}-light
+	{
+		color: map-get($val, 1) !important;
+	}
+}

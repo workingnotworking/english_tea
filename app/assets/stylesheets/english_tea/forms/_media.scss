@@ -1,0 +1,61 @@
+// ==========================================================================
+// Shorthand media editor control styling classes
+// ==========================================================================
+
+.media-editor
+{
+	counter-reset: editor;
+
+	.media-item-asset
+	{
+			// &:before
+			// {
+			// 	$icon-size-massive: map-get($icon-scale, massive);
+
+			// 	@include _pseudo-elem(_rem($icon-size-massive * 2), _rem($icon-size-massive * 2));
+
+			// 	background: transparent url('data:image/svg+xml,#{$icon-upload}') no-repeat center center;
+			// 	opacity: 0.125;
+			// 	z-index: 0;
+			// }
+	}
+
+		// .media-editor-item-thumbnail
+		// {
+		// 	height: 0;
+		// 	padding-bottom: 100%;
+		// }
+
+	.embed-type .image-type
+	{
+		display: none !important;
+	}
+
+	.image-type .embed-type
+	{
+		display: none !important;
+	}
+
+	.media-editor-item-meta:before
+	{
+		content: counter(editor);
+		counter-increment: editor;
+		display: block;
+	}
+
+	.media-editor-item:first-child
+	{
+		[data-behavior="project-image-position-up"]
+		{
+			display: none !important;
+		}
+	}
+
+	.media-editor-item:last-child
+	{
+		[data-behavior="project-image-position-down"]
+		{
+			display: none !important;
+		}
+	}
+}

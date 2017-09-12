@@ -1,0 +1,53 @@
+// ==========================================================================
+// Pattern for a tooltip container and the tooltip itself
+// ==========================================================================
+
+.has-tooltip
+{
+  cursor: help;
+  position: relative;
+
+  .tooltip
+  {
+    bottom: 100%;
+    display: none;
+    right: 50%;
+    padding-bottom: _rem($base-rhythm);
+    position: absolute;
+    @include transform(translate3d(50%, 0, 0));
+    z-index: map-get($layer-scale, 4);
+  }
+
+    .tooltip-content
+    {
+      background-color: map-get($colors, 10);
+      @include _box-shadow(2);
+      color: map-get($colors, 1);
+      position: relative;
+
+      &:after
+      {
+        border-top: _rem($base-rhythm) solid map-get($colors, 10);
+        border-right: _rem($base-rhythm) solid transparent;
+        border-left: _rem($base-rhythm) solid transparent;
+        content: '';
+        display: block;
+        height: 0;
+        left: 50%;
+        position: absolute;
+        top: 100%;
+        @include transform(translate3d(-50%, 0, 0));
+        width: 0;
+      }
+    }
+
+  &:active,
+  &:focus,
+  &:hover
+  {
+    .tooltip
+    {
+      display: block;
+    }
+  }
+}

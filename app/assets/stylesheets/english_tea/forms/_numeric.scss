@@ -1,0 +1,47 @@
+// ==========================================================================
+// Shorthand form numerical field styling classes
+// ==========================================================================
+
+// ---
+// SIMPLE NUMBER FIELDS
+// ---
+
+.field-num
+{
+	width: _rem($base-rhythm * 10);
+}
+
+// ---
+// CREDIT CARD EXPIRY DATE FIELDS
+// ---
+
+.field-cc-date
+{
+	width: _rem($base-rhythm * 6);
+}
+
+// ---
+// LENGTH MEASURING FIELD
+// ---
+
+.field-length
+{
+	$_font: map-get($type-scale, 0);
+
+	color: map-get($colors, 4);
+	display: block;
+	font-size: map-get($_font, size);
+	line-height: map-get($_font, line-height) / map-get($_font, size);
+	margin-top: _rem($base-rhythm-half);
+	margin-right: _rem($base-rhythm-half);
+	text-align: right;
+	width: 100%;
+
+	.field-length-value
+	{
+		display: inline-block;
+		text-align: left;
+		margin-left: _rem($base-rhythm-half);
+		width: 2em;
+	}
+}

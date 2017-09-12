@@ -1,0 +1,51 @@
+// ==========================================================================
+// Shorthand form text field styling classes
+// ==========================================================================
+
+// ---
+// TEXT FIELDS
+// ---
+
+.field-text
+{
+	width: 100%;
+
+	&.minimal
+	{
+		background-clip: padding-box;
+		background-color: transparent;
+		border-width: 2px;
+		border-top: none;
+		border-right: none;
+		border-left: none;
+		padding-right: 0 !important;
+		padding-left: 0 !important;
+
+		@include _placeholder-prefix()
+		{
+			color: map-get($colors, 6);
+		}
+	}
+
+	&.error {
+		border-color: #ef4d4d !important;
+	}
+}
+
+.field-jumbo-text
+{
+	$_font: map-get($type-scale, 7);
+
+	border-bottom: 1px solid map-get($colors, 10);
+	color: $color-text-base;
+	font-size: _rem(map-get($_font, size));
+	line-height: _rem(map-get($_font, line-height));
+	padding: _rem($base-rhythm * 2) 0 !important;
+
+	> input[type="text"]
+	{
+		border: none;
+		letter-spacing: -0.025em;
+		vertical-align: middle;
+	}
+}

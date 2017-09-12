@@ -1,0 +1,258 @@
+// ==========================================================================
+// Global SASS mixin declarations
+// ========================================================================== */
+
+// ---
+// MQ
+// Media queries
+// ---
+
+@mixin _mq($point, $IE9: false, $query1: min, $query2: width)
+{
+  @if $IE9 == true
+  {
+    .lt-ie9 &
+    {
+      @content;
+    }
+  }
+
+  @if $point == 0px
+  {
+    @content;
+  }
+  @else
+  {
+    @media (#{$query1}-#{$query2}: $point / $base-font-size + em)
+    {
+      @content;
+    }
+  }
+}
+
+// ---
+// BREAKPOINT PREFIXER
+// Prefix content with breakpoint ref and nest inside MQs
+// ---
+
+@mixin _bp-prefixer($class-suffix: null)
+{
+  @each $bp-name, $bp-val in $breakpoints
+  {
+    @if $bp-name == none
+    {
+      .#{$class-suffix}
+      {
+        @content;
+      }
+    }
+    @else
+    {
+      @include _mq($bp-val)
+      {
+        .#{$bp-name}-#{$class-suffix}
+        {
+          @content;
+        }
+      }
+    }
+  }
+}
+
+// ---
+// BREAKPOINT PREFIXER
+// Simply prefix content with breakpoint ref
+// ---
+
+@mixin _bp-prefixer-basic
+{
+  @each $bp-name, $bp-val in $breakpoints
+  {
+    @if $bp-name != none
+    {
+      @include _mq($bp-val)
+      {
+        .#{$bp-name}-
+        {
+          @content;
+        }
+      }
+    }
+  }
+}
+
+// ---
+// INTRINSIC RATIO
+// Creates intrinsic ratio container for stretched inner element
+// ---
+
+@mixin _intrinsic-ratio
+{
+  height: 0;
+  padding-bottom: 100%; // default
+  position: relative;
+
+  > *:first-child
+  {
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+// ---
+// PSEUDO ELEM
+// Basic pseudo element setup for position, dimensions, etc
+// ---
+
+@mixin _pseudo-elem($height, $width)
+{
+  content: '';
+  display: block;
+  height: $height;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  @include transform(translate3d(-50%, -50%, 0));
+  width: $width;
+}
+
+// ---
+// GENERIC PSEUDO PREFIXER
+// Style input placeholder text w/prefixes
+// ---
+
+@mixin _pseudo-prefix($selector, $prefixes)
+{
+  @each $prefix in $prefixes
+  {
+    ::-#{$prefix}-#{$selector}
+    {
+      @content;
+    }
+  }
+}
+
+// ---
+// PLACEHOLDER PSEUDO PREFIXER
+// Style input placeholder text w/prefixes
+// Retain browser syntax ':' vs '::'
+// ---
+@mixin _placeholder-prefix()
+{
+  &::-webkit-input-placeholder { /* Chrome */
+    @content;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    @content;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    @content;
+    opacity: 1;
+  }
+  &:-moz-placeholder { /* Firefox 4 - 18 */
+    @content;
+    opacity: 1;
+  }
+}
+
+// ---
+// WILL CHANGE
+// Kick the GPU
+// ---
+
+@mixin _will-change
+{
+  @include prefixer(backface-visibility, hidden, webkit moz ms o spec);
+  @include transform(translate3d(0, 0, 0));
+}
+
+// ---
+// BOX SHADOW HELPER
+// https://medium.com/@Florian/freebie-google-material-design-shadow-helper-2a0501295a2d
+// ---
+
+@mixin _box-shadow($level: 2)
+{
+  @if ($level == 1)
+  {
+    box-shadow: 0 1px 3px -1px rgba(0,0,0,0.12), 0 1px 2px -1px rgba(0,0,0,0.24);
+  }
+  @else if ($level == 2)
+  {
+    box-shadow: 0 3px 6px -3px rgba(0,0,0,0.16), 0 3px 6px -3px rgba(0,0,0,0.23);
+  }
+  @else if ($level == 3)
+  {
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.19), 0 6px 6px -6px rgba(0,0,0,0.23);
+  }
+  @else if ($level == 4)
+  {
+    box-shadow: 0 14px 28px -14px rgba(0,0,0,0.25), 0 10px 10px -10px rgba(0,0,0,0.22);
+  }
+  @else if ($level == 5)
+  {
+    box-shadow: 0 19px 38px -19px rgba(0,0,0,0.30), 0 15px 12px -15px rgba(0,0,0,0.22);
+  }
+  @else if ($level == 6)
+  {
+    box-shadow: 0 0 38px rgba(0,0,0,0.30), 0 15px 12px -15px rgba(0,0,0,0.22);
+  }
+}
+
+// Monkey Patched from bourbon to brute force allow for !important declarations
+// CSS3 Flexible Box Model and property defaults
+// Unified attributes for 2009, 2011, and 2012 flavours.
+
+// 2009 - display (box | inline-box)
+// 2011 - display (flexbox | inline-flexbox)
+// 2012 - display (flex | inline-flex)
+@mixin display($value) {
+// flex | inline-flex
+  @if inspect($value) == "flex" {
+    // 2009
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+
+    // 2012
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox; // 2011 (IE 10)
+    display: flex;
+  } @else if inspect($value) == "flex !important" {
+    // 2009
+    display: -webkit-box !important;
+    display: -moz-box !important;
+    display: box !important;
+
+    // 2012
+    display: -webkit-flex !important;
+    display: -moz-flex !important;
+    display: -ms-flexbox !important; // 2011 (IE 10)
+    display: flex !important;
+  } @else if $value == "inline-flex" {
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    display: inline-box;
+
+    display: -webkit-inline-flex;
+    display: -moz-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+  } @else if inspect($value) == "inline-flex !important" {
+    display: -webkit-inline-box !important;
+    display: -moz-inline-box !important;
+    display: inline-box !important;
+
+    display: -webkit-inline-flex !important;
+    display: -moz-inline-flex !important;
+    display: -ms-inline-flexbox !important;
+    display: inline-flex !important;
+  } @else {
+    display: $value;
+  }
+}

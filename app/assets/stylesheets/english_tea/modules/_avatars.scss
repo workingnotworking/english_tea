@@ -1,0 +1,40 @@
+// ==========================================================================
+// Various shorthand classes for user avatar sizing
+// ==========================================================================
+
+@include _bp-prefixer(avatar)
+{
+  &
+  {
+    display: block;
+    height: _rem($base-rhythm * 5);
+    width: _rem($base-rhythm * 5);
+  }
+
+  &-tiny
+  {
+    display: block;
+    height: _rem($base-rhythm * 3);
+    width: _rem($base-rhythm * 3);
+  }
+
+  &-small
+  {
+    display: block;
+    height: _rem($base-rhythm * 4);
+    width: _rem($base-rhythm * 4);
+  }
+
+  &-large
+  {
+    display: block;
+    height: _rem($base-rhythm * 6);
+    width: _rem($base-rhythm * 6);
+
+    @include _mq(map-get($breakpoints, bps))
+    {
+      height: _rem($base-rhythm * 7);
+      width: _rem($base-rhythm * 7);
+    }
+  }
+}

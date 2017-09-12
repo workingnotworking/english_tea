@@ -1,0 +1,401 @@
+// ==========================================================================
+// Gridded tiles module
+// ==========================================================================
+
+// ---
+// TILE-SPECIFIC MIXINS
+// ---
+
+@mixin _size-tiles($tile-layout)
+{
+	@each $key, $val in $tiles-scale
+	{
+		$_gutter: map-get($val, gutter);
+		$_tiles: map-get($val, #{$tile-layout});
+
+    	@include _mq(map-get($breakpoints, map-get($val, bp)))
+    	{
+				@if $_tiles == 1
+				{
+					max-width: 100%;
+				}
+				@else
+				{
+		    	max-width: calc((100% - #{_rem($_gutter * ($_tiles - 1))}) / #{$_tiles});
+		    }
+    	}
+    }
+}
+
+// ---
+// BASE TILES CONTAINER STYLING
+// ---
+
+.tiles
+{
+	opacity: 0;
+	@include transition(opacity $transition-timing-base $transition-easing-base);
+}
+
+	.tiles-loaded
+	{
+		opacity: 1;
+	}
+
+// ---
+// BASE TILE STYLING
+// ---
+
+.tile
+{
+	//@include _will-change(); // Stop dat flickering
+
+	// Vertical gutters
+	margin-bottom: _rem($base-gutter);
+	@include transition(box-shadow $transition-timing-base $transition-easing-base);
+
+	@include _mq(map-get($breakpoints, bps))
+	{
+		margin-bottom: _rem($base-gutter-large);
+	}
+
+	&:hover
+	{
+		@include _box-shadow(2);
+	}
+
+		// Note: Uses intrinsic ratio set via inline style
+		.tile-thumbnail
+		{
+			// Tinted color overlay
+			&:before
+			{
+				background-color: map-get($colors, 4); // For Contenders
+				content: '';
+				display: block;
+				mix-blend-mode: multiply;
+				z-index: 1;
+			}
+
+			// Tinted color overlay background status color
+			// Note: Contenders don't get tint color
+			@each $key, $val in $colors-status
+			{
+				&.tint-#{$key}:before
+				{
+					background-color: map-get($val, 2);
+				}
+			}
+
+			&:hover
+			{
+				opacity: 1;
+			}
+
+			.tile-thumbnail-asset
+			{
+				opacity: 1;
+				@include transition(all $transition-timing-base $transition-easing-base);
+			}
+		}
+
+			// Place the color & status overlays on top of the thumbnail
+			.tile-thumbnail:before,
+			.tile-status
+			{
+				height: 100%;
+				left: 0;
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				@include transition(opacity $transition-timing-base $transition-easing-base);
+				width: 100%;
+			}
+
+				&:active .tile-thumbnail-asset,
+				&:focus .tile-thumbnail-asset,
+				&:hover .tile-thumbnail-asset
+				{
+					opacity: map-get($opacity-scale, 5);
+					@include prefixer(filter, grayscale(100%), webkit spec);
+				}
+
+				&:active .tile-thumbnail:before,
+				&:active .tile-status,
+				&:focus .tile-thumbnail:before,
+				&:focus .tile-status,
+				&:hover .tile-thumbnail:before,
+				&:hover .tile-status
+				{
+					opacity: 1;
+				}
+
+			// Available soon date & contender indicator badges
+			.tile-badge
+			{
+				@include transition(all $transition-timing-base $transition-easing-base);
+			}
+
+				&:active .tile-badge,
+				&:focus .tile-badge,
+				&:hover .tile-badge
+				{
+					opacity: 0;
+					visibility: hidden;
+				}
+
+			// Don't show these elements for base layout
+			.tile-avatar,
+			.tile-info,
+			.tile-rate,
+			.tile-contender,
+			.tile-hygiene
+			{
+				display: none;
+			}
+
+			// Prep the more button for being shown on hover
+			.tile-more
+			{
+				opacity: 0;
+				@include transition(all $transition-timing-base $transition-easing-base);
+				visibility: hidden;
+			}
+
+			// Prep the standalone MB icon for being hidden on hover
+			.tile-mb
+			{
+				opacity: 1;
+				@include transition(all $transition-timing-base $transition-easing-base);
+				visibility: visible;
+			}
+
+			@include _mq(map-get($breakpoints, bpm))
+			{
+				// Show hygiene element on larger screens
+				.tile-hygiene
+				{
+					@include display(flex);
+				}
+
+					// Swap MB and more elements on hover on larger screens
+					&:active,
+					&:focus,
+					&:hover
+					{
+						.tile-more
+						{
+							opacity: 1;
+							visibility: visible;
+						}
+
+						.tile-mb
+						{
+							opacity: 0;
+							visibility: hidden;
+						}
+					}
+			}
+
+			// For touch devices, always show the more button (on larger screens
+			// as parent element tile-hygiene hidden on smallest screens)
+			.touchevents &
+			{
+				.tile-more
+				{
+					display: block;
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+}
+
+// ---
+// MASONRY ELEM SIZING
+// ---
+
+// Default tile sizing
+.tile,
+.tile-sizer
+{
+	width: 100%;
+}
+
+// Set gutter sizes depending on breakpoint
+.tile-gutter-sizer
+{
+	width: _rem($base-gutter);
+
+	@include _mq(map-get($breakpoints, bps))
+	{
+		width: _rem($base-gutter-large);
+	}
+}
+
+// ---
+// BASE MASONRY LAYOUT
+// ---
+
+// Only apply to base layouts
+.tiles-grid
+{
+	// Set base layout tile sizes across breakpoints
+	.tile,
+	.tile-sizer
+	{
+		.section:not(.section-full) &
+		{
+			@include _size-tiles(tiles);
+		}
+
+		.section-full &
+		{
+			@include _size-tiles(tiles-full);
+		}
+	}
+}
+
+// ---
+// LARGE MASONRY LAYOUT
+// ---
+
+.tiles-grid-large
+{
+	// Set alt layout tile sizes across breakpoints
+	.tile,
+	.tile-sizer
+	{
+		@include _size-tiles(tiles-alt);
+	}
+
+	// Set alt layout tile styling
+	.tile
+	{
+		// View miniprofile hint "button"
+		.tile-status-hint
+		{
+			bottom: _rem($base-rhythm * 2) !important;
+
+			> .tile-status-hint-text
+			{
+				border: $border-width $border-style map-get($colors, 1);
+			}
+		}
+
+		.tile-caption
+		{
+			padding-top: _rem($base-gutter) !important;
+			padding-bottom: _rem($base-gutter) !important;
+		}
+
+		@include _mq(map-get($breakpoints, bpm))
+		{
+			.tile-title-heading
+			{
+				$_type: map-get($type-scale, 2);
+
+				font-size: _rem(map-get($_type, size)) !important;
+				line-height: _rem($base-rhythm *2) !important;
+			}
+		}
+
+		.tile-avatar
+		{
+			display: block;
+		}
+
+		// Always show hygiene element for this layout
+		.tile-hygiene
+		{
+			@include display(flex);
+		}
+
+			// Never show the standalone MB element for this layout
+			.tile-mb
+			{
+				display: none;
+			}
+	}
+}
+
+// ---
+// LIST MASONRY LAYOUT
+// ---
+
+.tiles-grid-list
+{
+	// Set list layout tile styling
+	.tile
+	{
+		margin-bottom: _rem($base-gutter);
+		@include transition(border-color $transition-timing-base $transition-easing-base);
+
+		.tile-thumbnail
+		{
+			display: none !important;
+		}
+
+		.tile-caption
+		{
+			padding-top: _rem($base-gutter) !important;
+			padding-bottom: _rem($base-gutter) !important;
+		}
+
+		.tile-avatar
+		{
+			display: block;
+		}
+
+			.tile-avatar-asset
+			{
+				height: _rem($base-rhythm * 7) !important;
+				width: _rem($base-rhythm * 7) !important;
+			}
+
+		.tile-title
+		{
+			width: 25%;
+
+			@include _mq(map-get($breakpoints, bpm))
+			{
+				.tile-title-heading
+				{
+					$_type: map-get($type-scale, 2);
+
+					font-size: _rem(map-get($_type, size)) !important;
+					line-height: _rem($base-rhythm *2) !important;
+				}
+			}
+		}
+
+		.tile-info
+		{
+			@include _mq(map-get($breakpoints, bpm))
+			{
+				display: block;
+				width: 40%;
+			}
+		}
+
+		.tile-rate,
+		.tile-contender
+		{
+			@include _mq(map-get($breakpoints, bps))
+			{
+				display: block;
+			}
+		}
+
+		// Show hygiene element for this layout
+		.tile-hygiene
+		{
+			@include display(flex);
+		}
+
+			// Don't show MB element for this layout
+			.tile-mb
+			{
+				display: none;
+			}
+	}
+}

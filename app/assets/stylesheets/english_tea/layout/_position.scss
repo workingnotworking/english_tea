@@ -1,0 +1,36 @@
+// ==========================================================================
+// Element positioning classes
+// ==========================================================================
+
+.relative
+{
+	position: relative;
+}
+
+.absolute
+{
+	position: absolute;
+}
+
+.fixed
+{
+	position: fixed;
+}
+
+@include _bp-prefixer-basic
+{
+	&relative
+	{
+		position: relative;
+	}
+
+	&absolute
+	{
+		position: absolute;
+	}
+
+	&fixed
+	{
+		position: fixed;
+	}
+}

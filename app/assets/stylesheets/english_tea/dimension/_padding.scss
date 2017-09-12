@@ -1,0 +1,166 @@
+// ==========================================================================
+// Padding dimension classes
+// ==========================================================================
+
+// ---
+// GUTTER-SIZED PADDING
+// ---
+
+.pxgutter
+{
+	padding-right: _rem($base-gutter) !important;
+	padding-left: _rem($base-gutter) !important;
+
+ 	@include _mq(map-get($breakpoints, bps))
+ 	{
+		padding-right: _rem($base-gutter-large) !important;
+		padding-left: _rem($base-gutter-large) !important;
+ 	}
+}
+
+.pygutter
+{
+	padding-top: _rem($base-gutter) !important;
+	padding-bottom: _rem($base-gutter) !important;
+
+ 	@include _mq(map-get($breakpoints, bps))
+ 	{
+		padding-top: _rem($base-gutter-large) !important;
+		padding-bottom: _rem($base-gutter-large) !important;
+ 	}
+}
+
+@include _bp-prefixer(p)
+{
+	// ---
+	// HALF GUTTER MEASURES
+	// ---
+
+	&gutter-half
+	{
+		padding: _rem($base-gutter) !important;
+	}
+
+	&xgutter-half
+	{
+		padding-right: _rem($base-gutter) !important;
+		padding-left: _rem($base-gutter) !important;
+	}
+
+	&ygutter-half
+	{
+		padding-top: _rem($base-gutter) !important;
+		padding-bottom: _rem($base-gutter) !important;
+	}
+
+	// ---
+	// HALF BASE RHYTHM MEASURES
+	// ---
+
+	&half
+	{
+		padding: _rem($base-rhythm-half) !important;
+	}
+
+	&thalf
+	{
+		padding-top: _rem($base-rhythm-half) !important;
+	}
+
+	&rhalf
+	{
+		padding-right: _rem($base-rhythm-half) !important;
+	}
+
+	&bhalf
+	{
+		padding-bottom: _rem($base-rhythm-half) !important;
+	}
+
+	&lhalf
+	{
+		padding-left: _rem($base-rhythm-half) !important;
+	}
+
+	// ---
+	// X/Y HALF BASE RHYTHM SHORTHANDS
+	// ---
+
+	&xhalf
+	{
+		padding-right: _rem($base-rhythm-half) !important;
+		padding-left:_rem($base-rhythm-half) !important;
+	}
+
+	&yhalf
+	{
+		padding-top: _rem($base-rhythm-half) !important;
+		padding-bottom: _rem($base-rhythm-half) !important;
+	}
+
+	@each $key, $val in $gutter-scale
+	{
+		&#{$key}
+		{
+			padding: _rem($val) !important;
+		}
+
+		&t#{$key}
+		{
+			padding-top: _rem($val) !important;
+		}
+
+		&r#{$key}
+		{
+			padding-right: _rem($val) !important;
+		}
+
+		&b#{$key}
+		{
+			padding-bottom: _rem($val) !important;
+		}
+
+		&l#{$key}
+		{
+			padding-left: _rem($val) !important;
+		}
+
+		&x#{$key}
+		{
+			padding-right: _rem($val) !important;
+			padding-left: _rem($val) !important;
+		}
+
+		&y#{$key}
+		{
+			padding-top: _rem($val) !important;
+			padding-bottom: _rem($val) !important;
+		}
+	}
+
+	// ---
+	// RESET PADDING
+	// ---
+
+	&rauto
+	{
+		padding-right: auto !important;
+	}
+
+	&lauto
+	{
+		padding-left: auto !important;
+	}
+
+	&xauto
+	{
+		padding-right: auto !important;
+		padding-left: auto !important;
+	}
+
+	&yauto
+	{
+		padding-top: auto !important;
+		padding-bottom: auto !important;
+	}
+}

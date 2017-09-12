@@ -1,0 +1,124 @@
+// ==========================================================================
+// Shorthand input range styling classes
+// ==========================================================================
+
+.field-range 
+{
+	&-input 
+	{
+		@include appearance(none);
+
+		vertical-align: middle;
+		width: 100%;
+
+		@include _pseudo-prefix(track, ('webkit-slider-runnable', 'moz-range', 'ms'))
+		{
+			@include appearance(none);
+
+			background: map-get($colors, 10);
+			border: none;
+			height: 2px;
+			vertical-align: middle;
+			width: 100%;
+		}
+
+		@include _pseudo-prefix(thumb, ('webkit-slider', 'moz-range', 'ms'))
+		{
+			@include appearance(none);
+
+			background: map-get($colors, 10);
+			border: none;
+			border-radius: 100%;
+			cursor: move;
+			height: _rem($base-rhythm * 2);
+			margin-top: _rem(-$base-rhythm);
+			@include transition(box-shadow $transition-timing-base $transition-easing-base);
+			width: _rem($base-rhythm * 2);
+
+			&:active,
+			&:focus 
+			{
+				@include _box-shadow(2);
+			}
+		}
+	}
+
+	&-output 
+	{
+		top: _rem(-($base-rhythm * 2.5));
+	}
+}
+
+// Alternative single slider control
+.weighted-selector
+{
+	// &-status
+	// {
+	// 	text-align: center;
+
+	// 	&:first-child
+	// 	{
+	// 		text-align: left;
+	// 	}
+
+	// 	&:last-child,
+		
+	// 	{
+	// 		text-align: right;
+	// 	}
+	// }
+
+	.noUi-target,
+	.noUi-target *
+	{
+		@include prefixer(touch-action, base, webkit moz ms);
+		@include prefixer(user-select, none, moz ms);
+	}
+
+	.noUi-horizontal
+	{
+		height: 2px;
+	}
+
+	.noUi-background
+	{
+		background-color: map-get($colors, 3);
+	}
+
+		.noUi-base 
+		{
+			height: 100%;
+			position: relative;
+			width: 100%;
+			z-index: 1;
+		}
+
+			.noUi-origin
+			{
+				bottom: 0;
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+
+			// @each $index in (1, 2)
+			// {
+			// 	.noUi-origin:nth-child(#{$index})
+			// 	{
+			// 		background-color: map-get($colors-weight, $index + 1);
+			// 	}
+			// }
+
+			.noUi-handle 
+			{
+				background-color: map-get($colors, 10);
+				border-radius: 100%;
+				height: _rem($base-rhythm * 2);
+				cursor: default;
+				left: _rem(-$base-rhythm + 1px);
+				position: relative;
+				top: _rem(-$base-rhythm + 1px);
+				width: _rem($base-rhythm * 2);
+			}
+}

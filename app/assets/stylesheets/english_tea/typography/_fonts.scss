@@ -1,0 +1,41 @@
+// ==========================================================================
+// Shorthand font family declaration classes
+// ==========================================================================
+
+.f
+{
+	font-family: $type-font-body;
+	font-weight: $type-weight-normal;
+	letter-spacing: normal;
+}
+
+.f-title
+{
+	font-family: $type-font-title;
+	font-weight: $type-weight-medium;
+	letter-spacing: $type-kerning-title;
+	text-transform: uppercase;
+}
+
+.f-status
+{
+	font-family: $type-font-status;
+	font-weight: $type-weight-semibold;
+	letter-spacing: $type-kerning-status;
+	text-transform: uppercase;
+}
+
+.f-desc
+{
+	font-family: $type-font-description;
+	font-style: $type-style-description;
+	font-weight: $type-weight-normal;
+	letter-spacing: $type-kerning-desc;
+}
+
+.f-code
+{
+	color: map-get(map-get($colors-status, stat-a), std);
+	font-family: $type-font-code;
+	font-weight: $type-weight-normal;
+}

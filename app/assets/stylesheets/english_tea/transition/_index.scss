@@ -1,0 +1,97 @@
+// ==========================================================================
+// Transition and animation utility classes
+// ==========================================================================
+
+// ---
+// TRANSITION BASE
+// ---
+
+.xtn
+{
+	@include transition(all 0.25s $transition-easing-base);
+}
+
+.xtn-xfm
+{
+	@include transition(transform 0.25s $transition-easing-base);
+}
+
+.xtn1
+{
+	@include transition(all 0.125s $transition-easing-base);
+}
+
+.xtn1-xfm
+{
+	@include transition(transform 0.125s $transition-easing-base);
+}
+
+// ---
+// TRANSITION: DIMENSIONS
+// ---
+
+@include _bp-prefixer(xtn)
+{
+	&-h0
+	{
+		height: 0;
+	}
+
+	&-hauto
+	{
+		height: auto;
+	}
+
+	&-w0
+	{
+		max-width: 0; // Make safari behave
+		width: 0;
+	}
+
+	&-wauto
+	{
+		width: auto;
+	}
+}
+
+// ---
+// TRANSITION: TRANSFORMS
+// Translations
+// ---
+
+.xfm-tpush
+{
+	@include transform(translate3d(0, 100%, 0) !important);
+}
+
+.xfm-rpush
+{
+	@include transform(translate3d(-100%, 0, 0) !important);
+}
+
+.xfm-rpush5
+{
+	@include transform(translate3d(-5%, 0, 0) !important);
+}
+
+.xfm-bpush
+{
+	@include transform(translate3d(0, -100%, 0) !important);
+}
+
+.xfm-lpush
+{
+	@include transform(translate3d(100%, 0, 0) !important);
+}
+
+// Scaling on hover
+
+.xfm-hov-scale1
+{
+	@include transform(translate3d(0, 0, 0));
+
+	&:hover
+	{
+		@include transform(scale(1.125));
+	}
+}

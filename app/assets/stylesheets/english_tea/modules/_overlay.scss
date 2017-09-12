@@ -1,0 +1,49 @@
+// ==========================================================================
+// Page overlay, used for mini-profiles etc
+// ==========================================================================
+
+.overlay
+{
+	// TODO: Is there a better way of managing this?
+	$_overlay-gutter: _rem($base-rhythm * 7);
+
+	.stick-top
+	{
+		position: fixed;
+
+		top: 0;
+		right: $_overlay-gutter;
+		bottom: auto;
+		left: auto;
+	}
+
+	.stick-bottom
+	{
+		position: fixed;
+
+		top: auto;
+		right: $_overlay-gutter;
+		bottom: 0;
+		left: auto;
+	}
+
+	.anchor-top
+	{
+		position: absolute;
+
+		top: 0;
+		right: 0;
+		bottom: auto;
+		left: auto;
+	}
+
+	.anchor-bottom
+	{
+		position: absolute;
+
+		top: auto;
+		right: 0;
+		bottom: 0;
+		left: auto;
+	}
+}

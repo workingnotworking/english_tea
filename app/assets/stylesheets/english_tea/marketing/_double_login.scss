@@ -1,0 +1,10 @@
+.double-login-bg {
+  background-color: map-get($colors, 10);
+  background-repeat: repeat;
+  padding-bottom: 559px !important;
+
+  p {
+    margin: $base-gutter 0;
+  }
+
+}

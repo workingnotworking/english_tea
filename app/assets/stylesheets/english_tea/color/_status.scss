@@ -1,0 +1,25 @@
+// ==========================================================================
+// Status color declaration classes
+// Pulled from $colors and $colors-status
+// ==========================================================================
+
+@each $key, $val in $colors-status
+{
+	@each $_key, $_val in $val
+	{
+		.c-txt-#{$key}#{$_key}
+		{
+			color: $_val !important;
+		}
+
+		.c-fill-#{$key}#{$_key}
+		{
+			background-color: $_val !important;
+		}
+
+		.c-b-#{$key}#{$_key}
+		{
+			border-color: $_val !important;
+		}
+	}
+}

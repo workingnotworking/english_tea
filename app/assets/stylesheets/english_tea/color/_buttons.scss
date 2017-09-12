@@ -1,0 +1,182 @@
+// ==========================================================================
+// Button color declaration classes
+// - Button colors for all our global monochrome colors in $colors
+// - Status button colors for all colors in $colors-status
+// - Job button colors for all colors in $colors-job-statuses/types
+// ==========================================================================
+
+// BUTTON BASE COLORS
+
+@for $i from 1 through length($colors)
+{
+  $_iterator: nth($colors, $i);
+  $_key: nth($_iterator, 1);
+  $_val: nth($_iterator, 2);
+
+  // Default text + text hover colors are LIGHTEST
+  $_txt: map-get($colors, 1);
+  $_txt-hover: map-get($colors, 1);
+
+  $_fill: $_val;
+  $_fill-hover: map-get($colors, 1);
+
+  // If color LIGHTER than color #4, set text hover as DARKEST color
+  // i.e. Light fills have dark text
+	@if $i < 4
+	{
+		$_txt: map-get($colors, 10);
+	}
+
+	// If color is LIGHTEST, set text hover to DARKEST color
+	// (text hover otherwise always LIGHTEST color)
+	@if $i == 1
+	{
+		$_txt-hover: map-get($colors, 10);
+	}
+
+	// If color lighter than color #6, set fill hover one step DARKER,
+	// otherwise set color one step LIGHTER
+	@if $i < 6
+	{
+		$_fill-hover: map-get($colors, $i + 1);
+	}
+	@else
+	{
+		$_fill-hover: map-get($colors, $i - 1);
+	}
+
+	// If color is DARKEST, set fill hover two steps DARKER instead of one
+	@if $i == 10
+	{
+		$_fill-hover: map-get($colors, $i - 2);
+	}
+
+	.c-btn#{$_key}
+	{
+		background-color: $_fill;
+		border: $border-width $border-style $_fill;
+		color: $_txt;
+
+		&:not(:disabled):active,
+		&:not(:disabled):focus,
+		&:not(:disabled):hover
+		{
+			background-color: $_fill-hover;
+			border-color: $_fill-hover;
+			color: $_txt-hover;
+			opacity: 1;
+		}
+	}
+}
+
+// BUTTON STATUS COLORS
+
+@each $key, $val in $colors-status
+{
+	.c-btn-#{$key}
+	{
+		background-color: map-get($val, 3);
+		border: $border-width $border-style map-get($val, 3);
+		color: map-get($colors, 1);
+
+		&:not(:disabled):active,
+		&:not(:disabled):focus,
+		&:not(:disabled):hover
+		{
+			background-color: map-get($val, 4);
+			border-color: map-get($val, 4);
+			color: map-get($colors, 1);
+			opacity: 1;
+		}
+	}
+}
+
+// BUTTON JOB COLORS
+
+// Job Statuses
+@each $key, $val in $colors-job-statuses
+{
+	.c-btn-job-#{$key}
+	{
+		background-color: map-get($val, 3);
+		border: $border-width $border-style map-get($val, 3);
+		color: map-get($colors, 1);
+
+		&:not(:disabled):active,
+		&:not(:disabled):focus,
+		&:not(:disabled):hover,
+		{
+			background-color: map-get($val, 4);
+			border-color: map-get($val, 4);
+			color: map-get($colors, 1);
+		}
+	}
+}
+
+// Job Types
+@each $key, $val in $colors-job-types
+{
+	.c-btn-job-#{$key}
+	{
+		background-color: map-get($val, 3);
+		border: $border-width $border-style map-get($val, 3);
+		color: map-get($colors, 1);
+
+		&:not(:disabled):active,
+		&:not(:disabled):focus,
+		&:not(:disabled):hover,
+		{
+			background-color: map-get($val, 4);
+			border-color: map-get($val, 4);
+			color: map-get($colors, 1);
+		}
+	}
+}
+
+// GLOBAL INACTIVE + DISABLED BUTTONS
+
+.c-btn-inactive
+{
+	background-color: map-get($colors, 2);
+	border: $border-width $border-style map-get($colors, 2);
+	color: map-get($colors, 4);
+
+	&:not(:disabled):active,
+	&:not(:disabled):focus,
+	&:not(:disabled):hover
+	{
+		background-color: map-get($colors, 2);
+		border-color: map-get($colors, 2);
+		color: map-get($colors, 10);
+		opacity: 1;
+	}
+}
+
+.c-btn-disabled,
+.c-btn-disabled:not(:disabled):active,
+.c-btn-disabled:not(:disabled):focus,
+.c-btn-disabled:not(:disabled):hover
+{
+	background-color: map-get($colors, 2);
+	border: $border-width $border-style map-get($colors, 2);
+	color: map-get($colors, 3);
+	cursor: not-allowed;
+	opacity: 1;
+}
+
+// TRANSPARENT BG BUTTONS
+
+.c-btn-trans
+{
+	background-color: transparent;
+	border: $border-width $border-style transparent;
+	color: map-get($colors, 10);
+
+	&:active,
+	&:focus,
+	&:hover
+	{
+		background-color: map-get($colors, 2);
+		opacity: 1;
+	}
+}

@@ -1,0 +1,121 @@
+// ==========================================================================
+// Element visibility classes
+// ==========================================================================
+
+.hide
+{
+  display: none !important;
+}
+
+.show
+{
+  display: block !important;
+}
+
+.show-inline-block
+{
+  display: inline-block !important;
+}
+
+.show-inline
+{
+  display: inline !important;
+}
+
+.show-flex
+{
+  @include display(flex !important);
+}
+
+.invisible
+{
+  visibility: hidden !important;
+}
+
+.visible
+{
+  visibility: visible !important;
+}
+
+@include _bp-prefixer-basic
+{
+  &hide
+  {
+    display: none !important;
+  }
+
+  &show
+  {
+    display: block !important;
+  }
+
+  &show-inline-block
+  {
+    display: inline-block !important;
+  }
+
+  &show-inline
+  {
+    display: inline !important;
+  }
+
+  &show-flex
+  {
+    @include display(flex !important);
+  }
+
+  &invisible
+  {
+    visibility: hidden !important;
+  }
+
+  &visible
+  {
+    visibility: visible !important;
+  }
+}
+
+.touchevents .hide-touch
+{
+  display: none !important;
+}
+
+.hide-text
+{
+  text-indent: -999em;
+}
+
+.hide-visually,
+.visually-hidden
+{
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+// ---
+// TRANSPARENCY
+// ---
+
+@each $key, $val in $opacity-scale
+{
+  .trans#{$key}
+  {
+    opacity: $val;
+  }
+}
+
+// ---
+// BLUR SECTION
+// ---
+
+.blur
+{
+  @include _will-change();
+  @include filter(blur(10px));
+}
