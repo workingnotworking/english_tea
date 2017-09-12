@@ -22,11 +22,19 @@ Include in your application.css file:
 
     *= require english_tea/all
 
-Alternatively you can include individual modules by directory/name:
+Alternatively you can include individual modules by using the index to include an entire module:
 
-    *= require_tree english_tea/setup
-    *= require_tree english_tea/typography
-    *= require english_tea/buttons/index
+    *= require english_tea/setup/index
+    *= require_tree english_tea/typography/index
+    
+    @import 'english_tea/setup/index';
+    @import 'english_tea/typography/index';
+
+Or just include the submodule you want directly:
+
+    *= require english_tea/typography/fonts
+
+    @import 'english_tea/typography/fonts';
 
 ## Documentation
 
