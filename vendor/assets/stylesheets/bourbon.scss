@@ -2,6 +2,7 @@
 // http://bourbon.io
 // Copyright 2011-2017 thoughtbot, inc.
 // MIT License
+$output-bourbon-deprecation-warnings: false;
 
 @import "bourbon/settings/deprecation-warnings";
 @import "bourbon/settings/prefixer";
