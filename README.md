@@ -24,11 +24,11 @@ Include in your application.css file:
 
 Alternatively you can include individual modules by using the index to include an entire module:
 
-    *= require english_tea/setup/index
-    *= require_tree english_tea/typography/index
+    *= require english_tea/setup
+    *= require_tree english_tea/typography
     
-    @import 'english_tea/setup/index';
-    @import 'english_tea/typography/index';
+    @import 'english_tea/setup';
+    @import 'english_tea/typography';
 
 Or just include the submodule you want directly:
 

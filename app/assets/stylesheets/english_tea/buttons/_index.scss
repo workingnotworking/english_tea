@@ -1,1 +1,44 @@
-@import 'setup';
+// ==========================================================================
+// Shorthand button styling classes
+// ==========================================================================
+
+.btn
+{
+	$_type: map-get($type-scale, 1);
+
+	@each $key, $val in $button-scale
+	{
+		&#{$key}
+		{
+			display: block;
+
+			cursor: pointer;
+			font-size: _rem(map-get($_type, size));
+			font-weight: $type-weight-medium;
+			line-height: _rem(map-get($_type, line-height));
+			text-align: center;
+
+			@include transition(all $transition-timing-button $transition-easing-button);
+		}
+	}
+}
+
+	// Inner element to lay out icons etc within buttons
+	.btn-layout
+	{
+		@include display(flex);
+		@include align-items(center);
+		width: 100%;
+	}
+
+// Tweak padding across breakpoints
+@include _bp-prefixer(btn)
+{
+	@each $key, $val in $button-scale
+	{
+		&#{$key}
+		{
+			padding: _rem(map-get($val, padding-y)) _rem(map-get($val, padding-x));
+		}
+	}
+}
