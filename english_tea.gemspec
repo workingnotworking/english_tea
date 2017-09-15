@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["rob@workingnotworking.com"]
 
   spec.summary       = %q{Atomic CSS from WorkingNotWorking.com}
-  spec.homepage      = "https://github.com/workingnotworking/english_tea."
+  spec.homepage      = "https://github.com/workingnotworking/english_tea"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
