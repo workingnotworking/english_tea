@@ -160,6 +160,7 @@
 			&:not(:empty):active,
 			&:not(:empty):focus,
 			&:hover,
+			&.edited
 			{
 				border-color: map-get(map-get($colors-job-types, fulltime), 2);
 				color: map-get(map-get($colors-job-types, fulltime), 2);
