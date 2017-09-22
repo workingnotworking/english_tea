@@ -105,7 +105,7 @@
 
 	.job-post-headline
 	{
-		color: #4a78ff !important; // see above color notes
+		color: nth(_fetch-setting("color-job-fulltime"), 1) !important; // see above color notes
 
 		mark
 		{
@@ -115,7 +115,7 @@
 
     &.job-post-type-freelance
     {
-      color: #ffccc7 !important; // see above color notes
+      color: nth(_fetch-setting("color-job-freelance"), 1) !important; // see above color notes
     }
 	}
 
