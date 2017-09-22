@@ -2,23 +2,74 @@
 // Global variable configuration
 // ==========================================================================
 
+$_english_tea_defaults: (
+	"base-font-size": 16px,
+	"base-line-height": 1.5,
+	"base-rhythm": 10px,
+	"base-gutter": 15px,
+	"base-gutter-large": 30px,
+	"max-measure-callout": 800px,
+	"max-measure-type": 750px,
+	"max-measure-form": 600px,
+	"max-width": 1160px,
+
+	"breakpoint-none": 0px,
+	"breakpoint-small": 768px,
+	"breakpoint-medium": 1024px,
+	"breakpoint-large": 1440px,
+	"breakpoint-xlarge": 1680px,
+
+	"type-font-title": ('Tungsten A', 'Tungsten B', sans-serif),
+	"type-font-status": ('Tungsten Narrow A', 'Tungsten Narrow B', sans-serif),
+	"type-font-body": ('Gotham A', 'Gotham B', sans-serif),
+	"type-font-description": ('Chronicle Display A', 'Chronicle Display B', serif),
+	"type-font-code": (Monaco, monospace),
+
+	"type-style-title": normal,
+  "type-style-body": normal,
+  "type-style-description": italic,
+  "type-weight-light": 300,
+  "type-weight-normal": 400,
+  "type-weight-medium": 500,
+  "type-weight-semibold": 600,
+  "type-weight-bold": 700,
+
+	"base-color-scale": (#fff, #eee, #ccc, #9e9e9e, #888, #666, #333, #222, #111, #000, #efece4, #2b2b2b),
+	"color-1": (#26f599, #1be68c, #13cb79, #24ba72),
+	"color-2": (#fdeb46, #f9e52d, #dcc914, #ccb92c),
+	"color-3": (#ff6452, #fb4530, #d34121, #c23d27),
+	"color-4": (#0120f9, #0a21c4, #071ba7, #061b88),
+	"color-5": (#ffbf2b, #ff9a1a, #e77c00, #d07100),
+	"color-6": (#444444, #333333, #222222, #000000),
+	"color-job-fulltime": (#4a78ff, #0a21c4, #071ba7, #061b88),
+	"color-job-freelance": (#ffccc7, #fb4530, #d34121, #c23d27)
+);
+
+$english_tea: () !default;
+
+// Function to fetch a setting, merging user-set variables overtop of defaults
+@function _fetch-setting($setting) {
+  @return map-get(map-merge($_english_tea-defaults, $english_tea), $setting);
+}
+
+
 // ---
 // BASE VALUES
 // ---
 
-$base-font-size: 16px;
-$base-line-height: 1.25;
+$base-font-size: _fetch-setting("base-font-size");
+$base-line-height: _fetch-setting("base-line-height");
 
-$base-rhythm: 10px;
+$base-rhythm: _fetch-setting("base-rhythm");
 $base-rhythm-half: $base-rhythm / 2;
 
-$base-gutter: 15px;
-$base-gutter-large: 30px;
+$base-gutter: _fetch-setting("base-gutter");
+$base-gutter-large: _fetch-setting("base-gutter-large");
 
-$max-measure-callout: 800px;
-$max-measure-type: 750px;
-$max-measure-form: 600px;
-$max-width: 1160px;
+$max-measure-callout: _fetch-setting("max-measure-callout");
+$max-measure-type: _fetch-setting("max-measure-type");
+$max-measure-form: _fetch-setting("max-measure-form");
+$max-width: _fetch-setting("max-width");
 
 // ---
 // BREAKPOINTS, GRID & TILES
@@ -26,11 +77,11 @@ $max-width: 1160px;
 
 $breakpoints:
 (
-	none: 0px,
-	bps: 768px,
-	bpm: 1024px,
-	bpl: 1440px,
-	bpxl: 1680px
+	none: _fetch-setting("breakpoint-none"),
+	bps: _fetch-setting("breakpoint-small"),
+	bpm: _fetch-setting("breakpoint-medium"),
+	bpl: _fetch-setting("breakpoint-large"),
+	bpxl: _fetch-setting("breakpoint-xlarge")
 );
 
 $grid-scale:
@@ -243,25 +294,25 @@ $kerning-scale:
 // TYPOGRAPHIC STYLE
 // ---
 
-$type-font-title: 'Tungsten A', 'Tungsten B', sans-serif;
-$type-font-status: 'Tungsten Narrow A', 'Tungsten Narrow B', sans-serif;
-$type-font-body: 'Gotham A', 'Gotham B', sans-serif;
-$type-font-description: 'Chronicle Display A', 'Chronicle Display B', serif;
-$type-font-code: Monaco, monospace;
+$type-font-title: _fetch-setting("type-font-title");
+$type-font-status: _fetch-setting("type-font-status");
+$type-font-body: _fetch-setting("type-font-body");
+$type-font-description: _fetch-setting("type-font-description");
+$type-font-code: _fetch-setting("type-font-code");
 
-$type-style-title: normal;
-$type-style-body: normal;
-$type-style-description: italic;
+$type-style-title: _fetch-setting("type-style-title");
+$type-style-body: _fetch-setting("type-style-body");
+$type-style-description: _fetch-setting("type-style-description");
 
 $type-kerning-title: map-get($kerning-scale, 1);
 $type-kerning-status: 0; //-0.0125em;
 $type-kerning-desc: map-get($kerning-scale, 2);
 
-$type-weight-light: 300;
-$type-weight-normal: 400;
-$type-weight-medium: 500;
-$type-weight-semibold: 600;
-$type-weight-bold: 700;
+$type-weight-light: _fetch-setting("type-weight-light");
+$type-weight-normal: _fetch-setting("type-weight-normal");
+$type-weight-medium: _fetch-setting("type-weight-medium");
+$type-weight-semibold: _fetch-setting("type-weight-semibold");
+$type-weight-bold: _fetch-setting("type-weight-bold");
 
 // ---
 // GUTTER SPACES
@@ -304,63 +355,63 @@ $gutter-scale:
 
 $colors:
 (
-	1: #fff,
-	2: #eee,
-	3: #ccc,
-	4: #9e9e9e,
-	5: #888,
-	6: #666,
-	7: #333,
-	8: #222,
-	9: #111,
-	10: #000,
-	11: #efece4,
-	12: #2b2b2b
+	1: nth(_fetch-setting("base-color-scale"), 1),
+	2: nth(_fetch-setting("base-color-scale"), 2),
+	3: nth(_fetch-setting("base-color-scale"), 3),
+	4: nth(_fetch-setting("base-color-scale"), 4),
+	5: nth(_fetch-setting("base-color-scale"), 5),
+	6: nth(_fetch-setting("base-color-scale"), 6),
+	7: nth(_fetch-setting("base-color-scale"), 7),
+	8: nth(_fetch-setting("base-color-scale"), 8),
+	9: nth(_fetch-setting("base-color-scale"), 9),
+	10: nth(_fetch-setting("base-color-scale"), 10),
+	11: nth(_fetch-setting("base-color-scale"), 11),
+	12: nth(_fetch-setting("base-color-scale"), 12)
 );
 
 $colors-status:
 (
 	stat-a: // Available
 	(
-		1: #26f599,
-		2: #1be68c,
-		3: #13cb79,
-		4: #24ba72 // Hover
+		1: nth(_fetch-setting("color-1"), 1),
+		2: nth(_fetch-setting("color-1"), 2),
+		3: nth(_fetch-setting("color-1"), 3),
+		4: nth(_fetch-setting("color-1"), 4)
 	),
 	stat-as: // Available Soon
 	(
-		1: #fdeb46,
-		2: #f9e52d,
-		3: #dcc914,
-		4: #ccb92c // Hover
+		1: nth(_fetch-setting("color-2"), 1),
+		2: nth(_fetch-setting("color-2"), 2),
+		3: nth(_fetch-setting("color-2"), 3),
+		4: nth(_fetch-setting("color-2"), 4)
 	),
 	stat-na: // Not Available
 	(
-		1: #ff6452,
-		2: #fb4530,
-		3: #d34121,
-		4: #c23d27 // Hover
+		1: nth(_fetch-setting("color-3"), 1),
+		2: nth(_fetch-setting("color-3"), 2),
+		3: nth(_fetch-setting("color-3"), 3),
+		4: nth(_fetch-setting("color-3"), 4)
 	),
 	stat-ft: // Fulltime
 	(
-		1: #0120f9,
-		2: #0a21c4,
-		3: #071ba7,
-		4: #061b88 // Hover
+		1: nth(_fetch-setting("color-4"), 1),
+		2: nth(_fetch-setting("color-4"), 2),
+		3: nth(_fetch-setting("color-4"), 3),
+		4: nth(_fetch-setting("color-4"), 4)
 	),
 	stat-ooo: // Out of Office
 	(
-		1: #ffbf2b,
-		2: #ff9a1a,
-		3: #e77c00,
-		4: #d07100 // Hover
+		1: nth(_fetch-setting("color-5"), 1),
+		2: nth(_fetch-setting("color-5"), 2),
+		3: nth(_fetch-setting("color-5"), 3),
+		4: nth(_fetch-setting("color-5"), 4)
 	),
 	stat-edu: // Student
 	(
-		1: #444,
-		2: #333,
-		3: #222,
-		4: #000 // Hover
+		1: nth(_fetch-setting("color-6"), 1),
+		2: nth(_fetch-setting("color-6"), 2),
+		3: nth(_fetch-setting("color-6"), 3),
+		4: nth(_fetch-setting("color-6"), 4)
 	)
 );
 
@@ -379,17 +430,17 @@ $colors-job-types:
 (
 	fulltime:
 	(
-		1: #4a78ff,
-		2: #0a21c4,
-		3: #071ba7,
-		4: #061b88 // Hover
+		1: nth(_fetch-setting("color-job-fulltime"), 1),
+		2: nth(_fetch-setting("color-job-fulltime"), 2),
+		3: nth(_fetch-setting("color-job-fulltime"), 3),
+		4: nth(_fetch-setting("color-job-fulltime"), 4)
 	),
 	freelance:
 	(
-		1: #ffccc7,
-		2: #fb4530,
-		3: #d34121,
-		4: #c23d27 // Hover
+		1: nth(_fetch-setting("color-job-freelance"), 1),
+		2: nth(_fetch-setting("color-job-freelance"), 2),
+		3: nth(_fetch-setting("color-job-freelance"), 3),
+		4: nth(_fetch-setting("color-job-freelance"), 4)
 	)
 );
 
