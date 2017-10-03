@@ -13,12 +13,12 @@ $datepicker-table-type: map-get($type-scale, 1);
   position: relative;
 	z-index: map-get($layer-scale, 5);
 
-	&.is-hidden 
+	&.is-hidden
 	{
     display: none;
 	}
 
-	&.is-bound 
+	&.is-bound
 	{
     position: absolute;
     @include _box-shadow(2);
@@ -31,7 +31,7 @@ $datepicker-table-type: map-get($type-scale, 1);
 		> button[type="button"]
 		{
 			cursor: default;
-		}	
+		}
 	}
 }
 
@@ -43,7 +43,7 @@ $datepicker-table-type: map-get($type-scale, 1);
 		position: relative;
 		text-align: center;
 	}
-		
+
 		.pika-label
 		{
 			display: inline-block;
@@ -87,12 +87,12 @@ $datepicker-table-type: map-get($type-scale, 1);
 			right: _rem($base-rhythm);
 		}
 
-	.pika-table 
+	.pika-table
 	{
 		border: $border-width $border-style $color-border-base;
 		width: 100%;
 
-		td, th 
+		td, th
 		{
 			font-size: #{_rem(map-get($datepicker-table-type, size))};
 			line-height: #{_rem(map-get($datepicker-table-type, line-height))};
@@ -100,9 +100,10 @@ $datepicker-table-type: map-get($type-scale, 1);
 			text-align: center;
 		}
 
-		abbr 
+		abbr
 		{
 			border: none;
+			text-decoration: none;
 			display: inline-block;
 			font-weight: $type-weight-medium;
 			margin: _rem($base-rhythm-half) 0;
@@ -113,12 +114,12 @@ $datepicker-table-type: map-get($type-scale, 1);
 			color: map-get($colors, 3);
 		}
 
-		.is-today 
+		.is-today
 		{
 			position: relative;
 			z-index: 0;
 
-			&:after 
+			&:after
 			{
 				background-color: map-get($colors, 2);
 				border-radius: 100%;
@@ -133,7 +134,7 @@ $datepicker-table-type: map-get($type-scale, 1);
 				z-index: 1;
 			}
 
-			.pika-day 
+			.pika-day
 			{
 				position: relative;
 				z-index: 2;
