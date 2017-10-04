@@ -36,6 +36,19 @@ Or just include the submodule you want directly:
 
     @import 'english_tea/typography/fonts';
 
+## Customization
+
+You can override things like colors, fonts and sizing like so:
+
+    $english_tea: (
+      "type-font-title": ('Comic Sans', 'Helvetica Neue', sans-serif),
+      "color-1": (#a2f4fc, #2fa6ba, #248798, #1a7180)
+    );
+
+    @import 'english_tea';
+
+Check out `app/assets/stylesheets/english_tea/setup/_config.scss` for the full list of default variables that you can override.
+
 ## Documentation
 
 See https://workingnotworking.com/styleguide for tons of usage examples (coming soon).
