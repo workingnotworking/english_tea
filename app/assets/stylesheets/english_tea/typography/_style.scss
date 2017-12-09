@@ -124,3 +124,23 @@
 {
 	list-style: decimal inside !important;
 }
+
+// ---
+// HANG QUOTES
+//
+// Define starting and optional ending content to append/prepend with
+// `data-start-hang` and `data-end-hang` attributes
+// ---
+
+.hang
+{
+	&:before
+	{
+		content: attr(data-start-hang);
+		margin-left: -0.275em;
+	}
+	&:after
+	{
+		content: attr(data-end-hang);
+	}
+}
