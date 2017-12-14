@@ -169,7 +169,7 @@ $tiles-scale:
 $fixed-widths:
 (
 	0: 40px,
-	1: 120px,
+	1: 100px,
 	2: 150px,
 	3: 200px,
 	4: 250px,
@@ -234,7 +234,7 @@ $type-scale:
 		size: 36px,
 		line-height: 40px
 	),
-	8: //new 08/11
+	8:
 	(
 		size: 28px,
 		line-height: 30px
@@ -254,7 +254,7 @@ $type-scale:
 		size: 20px,
 		line-height: 25px
 	),
-	4: //new 08/11
+	4:
 	(
 		size: 18px,
 		line-height: 25px
@@ -321,11 +321,11 @@ $type-weight-semibold: _fetch-setting("type-weight-semibold");
 $type-weight-bold: _fetch-setting("type-weight-bold");
 
 // ---
-// GUTTER SPACES
-// 0px -> 50px (5px increments)
+// VERTICAL SPACES
+// 0px -> 160px in 10px increments
 // ---
 
-$gutter-scale:
+$rhythm-scale:
 (
 	0: $base-rhythm * 0,
 	1: $base-rhythm * 1,

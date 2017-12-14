@@ -98,7 +98,7 @@
 		padding-bottom: _rem($base-rhythm-half) !important;
 	}
 
-	@each $key, $val in $gutter-scale
+	@each $key, $val in $rhythm-scale
 	{
 		&#{$key}
 		{

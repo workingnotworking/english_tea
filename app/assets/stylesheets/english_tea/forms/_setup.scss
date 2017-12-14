@@ -58,7 +58,6 @@
 
 	.field-control,
 	.field-custom-control,
-	.awesomplete,
 	.select2-container--wnw
 	{
 		@include flex-basis(100%);
@@ -89,7 +88,6 @@
 
 		.field-control,
 		.field-custom-control,
-		.awesomplete,
 		.select2-container--wnw
 		{
 			@include flex-basis(auto);

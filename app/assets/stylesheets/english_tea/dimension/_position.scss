@@ -28,7 +28,7 @@
 		// GUTTERED OFFSETS
 		// ---
 
-		@each $gkey, $gval in $gutter-scale
+		@each $gkey, $gval in $rhythm-scale
 		{
 			&-#{$key}#{$gkey}
 			{
