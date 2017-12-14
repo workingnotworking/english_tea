@@ -121,7 +121,8 @@ $tiles-scale:
 		gutter: $base-gutter,
 		tiles: 2,
 		tiles-alt: 1,
-		tiles-full: 2
+		tiles-full: 2,
+		tiles-huge: 1
 	),
 	medium:
 	(
@@ -129,7 +130,8 @@ $tiles-scale:
 		gutter: $base-gutter-large,
 		tiles: 2,
 		tiles-alt: 1,
-		tiles-full: 2
+		tiles-full: 2,
+		tiles-huge: 1
 	),
 	large:
 	(
@@ -137,7 +139,8 @@ $tiles-scale:
 		gutter: $base-gutter-large,
 		tiles: 3,
 		tiles-alt: 2,
-		tiles-full: 4
+		tiles-full: 4,
+		tiles-huge: 2
 	),
 	xlarge:
 	(
@@ -145,7 +148,8 @@ $tiles-scale:
 		gutter: $base-gutter-large,
 		tiles: 4,
 		tiles-alt: 3,
-		tiles-full: 5
+		tiles-full: 5,
+		tiles-huge: 2
 	),
 	xxlarge:
 	(
@@ -153,7 +157,8 @@ $tiles-scale:
 		gutter: $base-gutter-large,
 		tiles: 5,
 		tiles-alt: 3,
-		tiles-full: 6
+		tiles-full: 6,
+		tiles-huge: 2
 	)
 );
 

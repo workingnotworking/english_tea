@@ -316,7 +316,20 @@
 				display: none;
 			}
 	}
+
+	&.tiles-grid-huge
+	{
+		// Set huge layout tile sizes across breakpoints (forces a max of 2-up on
+		// sizes bpm and larger)
+		.tile,
+		.tile-sizer
+		{
+			@include _size-tiles(tiles-huge);
+		}
+	}
+
 }
+
 
 // ---
 // LIST MASONRY LAYOUT
