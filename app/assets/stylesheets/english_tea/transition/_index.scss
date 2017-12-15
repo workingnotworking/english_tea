@@ -59,6 +59,11 @@
 // Translations
 // ---
 
+.xfm
+{
+	@include transform(translate3d(0, 0, 0) !important);
+}
+
 .xfm-tpush
 {
 	@include transform(translate3d(0, 100%, 0) !important);
