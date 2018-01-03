@@ -7,6 +7,7 @@
 	font-family: $type-font-body;
 	font-weight: $type-weight-normal;
 	letter-spacing: normal;
+	text-transform: $type-transform-body;
 }
 
 .f-title
@@ -14,7 +15,7 @@
 	font-family: $type-font-title;
 	font-weight: $type-weight-medium;
 	letter-spacing: $type-kerning-title;
-	text-transform: uppercase;
+	text-transform: $type-transform-title;
 }
 
 .f-status
@@ -22,7 +23,7 @@
 	font-family: $type-font-status;
 	font-weight: $type-weight-semibold;
 	letter-spacing: $type-kerning-status;
-	text-transform: uppercase;
+	text-transform: $type-transform-status;
 }
 
 .f-desc
@@ -30,7 +31,8 @@
 	font-family: $type-font-description;
 	font-style: $type-style-description;
 	font-weight: $type-weight-normal;
-	letter-spacing: $type-kerning-desc;
+	letter-spacing: $type-kerning-description;
+	text-transform: $type-transform-description;
 }
 
 .f-code
@@ -38,4 +40,5 @@
 	color: map-get(map-get($colors-status, stat-a), std);
 	font-family: $type-font-code;
 	font-weight: $type-weight-normal;
+	text-transform: $type-transform-code;
 }
