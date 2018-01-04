@@ -109,40 +109,41 @@
 
 // ---
 // FLIPBOARD CHARS
+// Not used
 // ---
 
-.flip
-{
-  border: $border-width $border-style map-get($colors, 3);
-  border-radius: $border-radius-rounded;
-  padding: 0 3px;
-  position: relative;
+// .flip
+// {
+//   border: $border-width $border-style map-get($colors, 3);
+//   border-radius: $border-radius-rounded;
+//   padding: 0 3px;
+//   position: relative;
 
-  &:first-child
-  {
-    margin-left: 2px;
-  }
+//   &:first-child
+//   {
+//     margin-left: 2px;
+//   }
 
-  &:last-child
-  {
-    margin-right: 2px;
-  }
+//   &:last-child
+//   {
+//     margin-right: 2px;
+//   }
 
-  &:before
-  {
-    border-top: $border-width $border-style map-get($colors, 3);
-    content: '';
-    display: block;
-    font-size: 0;
-    height: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: 100%;
-    z-index: -1;
-  }
-}
+//   &:before
+//   {
+//     border-top: $border-width $border-style map-get($colors, 3);
+//     content: '';
+//     display: block;
+//     font-size: 0;
+//     height: 0;
+//     left: 0;
+//     position: absolute;
+//     right: 0;
+//     top: 50%;
+//     width: 100%;
+//     z-index: -1;
+//   }
+// }
 
 // ---
 // IMAGE PROGRESS INDICATOR

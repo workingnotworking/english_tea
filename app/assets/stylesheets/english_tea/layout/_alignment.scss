@@ -58,32 +58,3 @@
 {
 	vertical-align: baseline !important;
 }
-
-// ---
-// FLEX HELPERS
-// ---
-
-.snap-top
-{
-	@include align-self(flex-start !important);
-}
-
-.snap-center
-{
-	@include align-self(center !important);
-}
-
-.snap-baseline
-{
-	@include align-self(baseline !important);
-}
-
-.snap-stretch
-{
-	@include align-self(stretch !important);
-}
-
-.snap-bottom
-{
-	@include align-self(flex-end !important);
-}

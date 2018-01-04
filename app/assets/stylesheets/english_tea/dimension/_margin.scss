@@ -5,7 +5,7 @@
 @include _bp-prefixer(m)
 {
 	// ---
-	// HALF BASE RHYTHM SHORTHANDS
+	// HALF BASE RHYTHM
 	// ---
 
 	&half
@@ -34,7 +34,7 @@
 	}
 
 	// ---
-	// X/Y MARGIN SHORTHANDS
+	// X/Y HALF BASE RHYTHM
 	// ---
 
 	&xhalf
@@ -49,7 +49,11 @@
 		margin-bottom: _rem($base-rhythm-half) !important;
 	}
 
-	@each $key, $val in $gutter-scale
+	// ---
+	// SCALE BASED MARGINS
+	// ---
+
+	@each $key, $val in $rhythm-scale
 	{
 		&#{$key}
 		{
@@ -77,7 +81,7 @@
 		}
 
 		// ---
-		// X/Y MARGIN SHORTHANDS
+		// X/Y MARGINS
 		// ---
 
 		&x#{$key}
@@ -170,6 +174,10 @@
 		margin-bottom: _rem(-$base-gutter) !important;
 	}
 }
+
+// ---
+// X/Y NEGATIVE GUTTER MARGINS
+// ---
 
 .mx-neggutter
 {

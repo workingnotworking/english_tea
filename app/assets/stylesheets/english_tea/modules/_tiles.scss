@@ -259,7 +259,8 @@
 // LARGE MASONRY LAYOUT
 // ---
 
-.tiles-grid-large
+.tiles-grid-large,
+.tiles-grid-huge
 {
 	// Set alt layout tile sizes across breakpoints
 	.tile,
@@ -317,19 +318,18 @@
 			}
 	}
 
-	&.tiles-grid-huge
-	{
-		// Set huge layout tile sizes across breakpoints (forces a max of 2-up on
-		// sizes bpm and larger)
-		.tile,
-		.tile-sizer
-		{
-			@include _size-tiles(tiles-huge);
-		}
-	}
-
 }
 
+.tiles-grid-huge
+{
+	// Set huge layout tile sizes across breakpoints (forces a max of 2-up on
+	// sizes bpm and larger)
+	.tile,
+	.tile-sizer
+	{
+		@include _size-tiles(tiles-huge);
+	}
+}
 
 // ---
 // LIST MASONRY LAYOUT

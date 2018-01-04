@@ -37,7 +37,6 @@
 
 .f-code
 {
-	color: map-get(map-get($colors-status, stat-a), std);
 	font-family: $type-font-code;
 	font-weight: $type-weight-normal;
 	text-transform: $type-transform-code;

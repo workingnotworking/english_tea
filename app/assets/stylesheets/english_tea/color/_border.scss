@@ -23,6 +23,11 @@
 // Border color utility classes
 // ---
 
+.c-b-trans
+{
+	border-color: transparent !important;
+}
+
 @each $_key, $_val in (top: t, right: r, bottom: b, left: l)
 {
 	.c-b#{$_val}-trans
