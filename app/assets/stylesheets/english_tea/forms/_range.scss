@@ -4,123 +4,80 @@
 // Originally developed for job title percentage selection.
 // ==========================================================================
 
-.field-range 
-{
-	&-input 
-	{
-		@include appearance(none);
 
-		vertical-align: middle;
-		width: 100%;
+.field-range {
 
-		@include _pseudo-prefix(track, ('webkit-slider-runnable', 'moz-range', 'ms'))
-		{
-			@include appearance(none);
+	&-input {
+	  @include prefixer(appearance, none, webkit);
 
-			background: map-get($colors, 10);
-			border: none;
-			height: 2px;
-			vertical-align: middle;
-			width: 100%;
+	  &:focus {
+	    outline: none;
+
+	  	&::-webkit-slider-runnable-track {
+		    background: map-get($colors, 3);
+		  }
+			&::-ms-fill-lower {
+		    background: map-get($colors, 4);
+		  }
+		  &::-ms-fill-upper {
+		    background: map-get($colors, 3);
+		  }
 		}
 
-		@include _pseudo-prefix(thumb, ('webkit-slider', 'moz-range', 'ms'))
-		{
-			@include appearance(none);
+	  &::-webkit-slider-runnable-track {
+	    width: 100%;
+	    height: 4px;
+	    cursor: pointer;
+	    background: map-get($colors, 3);
+	    border-radius: 2px;
+	  }
 
-			background: map-get($colors, 10);
-			border: none;
-			border-radius: 100%;
-			cursor: move;
-			height: _rem($base-rhythm * 2);
-			margin-top: _rem(-$base-rhythm);
-			@include transition(box-shadow $transition-timing-base $transition-easing-base);
-			width: _rem($base-rhythm * 2);
+	  &::-webkit-slider-thumb {
+	    height: 12px;
+	    width: 12px;
+	    border-radius: 6px;
+	    background: map-get($colors, 10);;
+	    cursor: pointer;
+	    -webkit-appearance: none;
+	    margin-top: -4.5px;
+	  }
 
-			&:active,
-			&:focus 
-			{
-				@include _box-shadow(2);
-			}
-		}
+	  &::-moz-range-track {
+	    width: 100%;
+	    height: 3px;
+	    cursor: pointer;
+	    background: map-get($colors, 3);
+	    border-radius: 0px;
+	  }
+
+	  &::-moz-range-progress {
+	    background: map-get($colors, 4);
+	  }
+
+	  &::-moz-range-thumb {
+	    height: 12px;
+	    width: 12px;
+	    border-radius: 6px;
+	    background: #000000;
+	    cursor: pointer;
+	  }
+
+	  &::-ms-track {
+	    width: 100%;
+	    height: 3px;
+	    cursor: pointer;
+	    background: transparent;
+	    border-color: transparent;
+	    color: transparent;
+	  }
+
+	  &::-ms-thumb {
+	    height: 12px;
+	    width: 12px;
+	    border-radius: 6px;
+	    background: map-get($colors, 10);;
+	    cursor: pointer;
+	    height: 3px;
+	  }
 	}
-
-	&-output 
-	{
-		top: _rem(-($base-rhythm * 2.5));
-	}
-}
-
-// Alternative single slider control
-.weighted-selector
-{
-	// &-status
-	// {
-	// 	text-align: center;
-
-	// 	&:first-child
-	// 	{
-	// 		text-align: left;
-	// 	}
-
-	// 	&:last-child,
-		
-	// 	{
-	// 		text-align: right;
-	// 	}
-	// }
-
-	.noUi-target,
-	.noUi-target *
-	{
-		@include prefixer(touch-action, base, webkit moz ms);
-		@include prefixer(user-select, none, moz ms);
-	}
-
-	.noUi-horizontal
-	{
-		height: 2px;
-	}
-
-	.noUi-background
-	{
-		background-color: map-get($colors, 3);
-	}
-
-		.noUi-base 
-		{
-			height: 100%;
-			position: relative;
-			width: 100%;
-			z-index: 1;
-		}
-
-			.noUi-origin
-			{
-				bottom: 0;
-				left: 0;
-				position: absolute;
-				right: 0;
-				top: 0;
-			}
-
-			// @each $index in (1, 2)
-			// {
-			// 	.noUi-origin:nth-child(#{$index})
-			// 	{
-			// 		background-color: map-get($colors-weight, $index + 1);
-			// 	}
-			// }
-
-			.noUi-handle 
-			{
-				background-color: map-get($colors, 10);
-				border-radius: 100%;
-				height: _rem($base-rhythm * 2);
-				cursor: default;
-				left: _rem(-$base-rhythm + 1px);
-				position: relative;
-				top: _rem(-$base-rhythm + 1px);
-				width: _rem($base-rhythm * 2);
-			}
 }
