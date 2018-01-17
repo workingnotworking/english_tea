@@ -117,6 +117,11 @@
     {
       color: nth(_fetch-setting("color-job-freelance"), 1) !important; // see above color notes
     }
+
+    &.job-post-type-internship
+    {
+      color: nth(_fetch-setting("color-job-internship"), 1) !important; // see above color notes
+    }
 	}
 
 }
