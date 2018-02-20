@@ -27,6 +27,34 @@
 	display: table-cell !important;
 }
 
+@include _bp-prefixer-basic
+{
+	&inline
+	{
+		display: inline !important;
+	}
+
+	&block
+	{
+		display: block !important;
+	}
+
+	&inline-block
+	{
+		display: inline-block !important;
+	}
+
+	&table
+	{
+		display: table !important;
+	}
+
+	&table-cell
+	{
+		display: table-cell !important;
+	}
+}
+
 // ---
 // OVERFLOW
 // ---
