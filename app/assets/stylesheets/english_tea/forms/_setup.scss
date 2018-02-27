@@ -56,6 +56,11 @@
 		margin-bottom: _rem($base-rhythm);
 	}
 
+	.field-control + .field-feedback
+	{
+		margin-bottom: 0
+	}
+
 	.field-control,
 	.field-custom-control,
 	.select2-container--wnw
