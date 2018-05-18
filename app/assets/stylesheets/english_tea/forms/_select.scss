@@ -23,7 +23,7 @@
 // Wrapper element for select2s that are within position fixed,
 // overlaid or scrollable container elements. Prevents scroll-jumping
 // that can occur when select2 dropdown is appended to body element.
-.field-select2-container
+.field-select-container, .field-select2-container
 {
   position: relative;
 }
