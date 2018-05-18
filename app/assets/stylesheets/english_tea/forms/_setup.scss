@@ -121,6 +121,11 @@
 		> .field-custom-control > .field-control
 		{
 			border-color: $color-validation-error;
+
+			&:focus
+			{
+				border-color: $color-validation-error !important;
+			}
 		}
 
 		> .field-feedback
