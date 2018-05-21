@@ -396,3 +396,48 @@
   position: absolute !important;
   width: 1px !important;
 }
+
+// choices.js
+
+.choices__inner,
+.choices__list--dropdown .choices__item,
+.choices[data-type*="select-one"] .choices__input {
+  padding: _rem($base-gutter);
+  background-color: map-get($colors, 1);
+  border-radius: 0;
+  @include _mq(map-get($breakpoints, bpm)) {
+    padding-right: _rem($base-rhythm * 2);
+    padding-left: _rem($base-rhythm * 2);
+  }
+}
+
+.choices[data-type*="select-one"] .choices__input {
+  padding: _rem($base-rhythm * 2);
+}
+
+.choices[data-type*="select-one"]:after {
+  right: _rem($base-rhythm * 2);
+}
+
+.choices__inner {
+  border: 1px solid map-get($colors, 2);
+}
+
+.is-focused .choices__inner,
+.is-open .choices__list--dropdown {
+  border-color: map-get($colors, 3) !important;
+}
+
+.choices[data-type*="select-one"] {
+  .choices__inner {
+    padding-bottom: _rem($base-gutter);
+  }
+}
+
+.choices__list--single {
+  padding: 0;
+}
+
+.is-open .choices__inner, .choices__list--dropdown {
+  border-radius: 0;
+}
