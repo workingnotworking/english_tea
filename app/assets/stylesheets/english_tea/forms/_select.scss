@@ -104,17 +104,19 @@
 			.select2-selection__clear,
 			.select2-selection__choice__remove
 			{
-				$_icon-size: map-get($icon-scale, base);
+				$_icon-size: map-get($icon-scale, base) / 1.5;
 
-				background: transparent url('data:image/svg+xml,#{$icon-delete}') no-repeat center center;
+        float: right;
+				background: transparent url('data:image/svg+xml,#{$icon-close-rev}') no-repeat center center;
 				background-size: _rem($_icon-size);
 				display: block;
 				@include flex-shrink(0 !important);
-				height:  _rem($_icon-size);
-				margin-right: $base-rhythm-half;
+				height: _rem($_icon-size);
+        margin-left: _rem($base-rhythm);
 				text-indent: -999em; // ¯\_(ツ)_/¯
-				width:  _rem($_icon-size);
+				width: _rem($_icon-size);
 				@include transition(opacity $transition-timing-border $transition-easing-border);
+        @include order(999);
 
 				&:active,
 				&:focus,
@@ -126,7 +128,12 @@
 
 		.select2-selection__choice
 		{
-			margin-right: _rem($base-gutter);
+      font-size: map-get(map-get($type-scale, 1), size);
+			margin-right: _rem($base-rhythm-half);
+      background-color: map-get($colors, 10);
+      color: map-get($colors, 1);
+      padding: _rem($base-rhythm / 3) _rem($base-rhythm / 1.8) _rem($base-rhythm / 3) _rem($base-rhythm);
+      border-radius: _rem($base-gutter);
 		}
 
 		// ---
@@ -419,6 +426,15 @@
   right: _rem($base-rhythm * 2);
 }
 
+.choices__input {
+  background-color: transparent;
+  margin-bottom: 0;
+  @include _placeholder-prefix()
+  {
+    color: map-get($colors, 3);
+  }
+}
+
 .choices__inner {
   border: 1px solid map-get($colors, 2);
 }
@@ -436,6 +452,25 @@
 
 .choices__list--single {
   padding: 0;
+}
+
+.choices__list--multiple .choices__item {
+  background-color: map-get($colors, 10);
+  border: none;
+  margin-bottom: 2px;
+  font-weight: normal;
+}
+
+.choices__list--multiple .choices__item.is-highlighted {
+  background-color: map-get($colors, 6);
+  border: inherit;
+}
+
+.choices[data-type*="select-multiple"] .choices__button,
+.choices[data-type*="text"] .choices__button {
+  border: none;
+  margin-right: 0;
+  opacity: 1;
 }
 
 .is-open .choices__inner, .choices__list--dropdown {
