@@ -246,6 +246,15 @@
 			}
     }
 
+    &3-5
+    {
+      @include flex-basis(percentage(3 / 5) !important);
+      max-width: percentage(3 / 5); // IE11 padding fix
+      &.grow {
+        max-width: none;
+      }
+    }
+
     &4-5
     {
       @include flex-basis(percentage(4 / 5) !important);
