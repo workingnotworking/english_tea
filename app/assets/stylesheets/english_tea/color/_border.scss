@@ -19,6 +19,10 @@
 	}
 }
 
+.b-dash {
+	border-style: dashed !important;
+}
+
 // ---
 // Border color utility classes
 // ---
@@ -33,5 +37,25 @@
 	.c-b#{$_val}-trans
 	{
 		border-#{$_key}-color: transparent !important;
+	}
+}
+
+
+@include _bp-prefixer(c-b)
+{
+	@each $key, $val in $colors
+	{
+		&#{$key}
+		{
+			border-color: $val !important;
+		}
+
+		@each $_key, $_val in (top: t, right: r, bottom: b, left: l)
+		{
+			&#{$_val}#{$key}
+			{
+				border-#{$_key}-color: $val !important;
+			}
+		}
 	}
 }
