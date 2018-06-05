@@ -8,12 +8,18 @@
 .field-range {
 
 	&.noUi-horizontal {
-		height: _rem($base-rhythm);
+		height: _rem($base-rhythm / 2);
 
 		.noUi-handle {
-			width: _rem($base-rhythm * 2);
-			height: _rem($base-rhythm * 2);
+			width: _rem($base-rhythm * 1.5);
+			height: _rem($base-rhythm * 1.5);
 		}
+	}
+
+	&.noUi-target {
+		background-color: map-get($colors, 10);
+		border: none;
+		box-shadow: none;
 	}
 
 	.noUi-handle {
@@ -23,6 +29,7 @@
 		box-shadow: none;
 		cursor: pointer;
 		outline: none;
+		top: -5px;
 
 		&:before {
 			display: none
@@ -34,4 +41,8 @@
 
 	}
 
+}
+
+html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
+	right: -10px;
 }
