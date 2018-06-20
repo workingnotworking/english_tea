@@ -410,6 +410,10 @@
   margin-bottom: 0;
 }
 
+.choices[data-type*="select-one"] .choices__button {
+  background-image: none;
+}
+
 .choices__inner,
 .choices__list--dropdown .choices__item,
 .choices[data-type*="select-one"] .choices__input {
