@@ -129,7 +129,7 @@
 		.select2-selection__choice
 		{
       font-size: map-get(map-get($type-scale, 1), size);
-			margin-right: _rem($base-rhythm-half);
+			margin: _rem($base-rhythm-half / 4) _rem($base-rhythm-half) _rem($base-rhythm-half / 4) 0;
       background-color: map-get($colors, 10);
       color: map-get($colors, 1);
       padding: _rem($base-rhythm / 3) _rem($base-rhythm / 1.8) _rem($base-rhythm / 3) _rem($base-rhythm);
