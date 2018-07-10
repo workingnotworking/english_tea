@@ -1,3 +1,3 @@
 module EnglishTea
-  VERSION = "1.22.0"
+  VERSION = "1.24.0"
 end
