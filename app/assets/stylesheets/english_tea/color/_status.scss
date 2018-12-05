@@ -21,5 +21,10 @@
 		{
 			border-color: $_val !important;
 		}
+
+		.c-icon-#{$key}#{$_key}
+		{
+			fill: $_val;
+		}
 	}
 }
