@@ -16,6 +16,10 @@
 	font-weight: $type-weight-medium;
 	letter-spacing: $type-kerning-title;
 	text-transform: $type-transform-title;
+
+	&.no-caps {
+		letter-spacing: -0.05rem;
+	}
 }
 
 .f-status
@@ -24,6 +28,10 @@
 	font-weight: $type-weight-semibold;
 	letter-spacing: $type-kerning-status;
 	text-transform: $type-transform-status;
+
+	&.no-caps {
+		letter-spacing: -0.025rem;
+	}
 }
 
 .f-desc
